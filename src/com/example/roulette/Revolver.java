@@ -20,9 +20,13 @@ public class Revolver {
 
     public void reload() {
         if (!isLoaded) {
+
+            // skift billede til ladt
+            chamber.setImageResource(R.drawable.chamber);
+
             Misc.message(ctx, "Reloaded");
-            // Lyd-effekt
             isLoaded = true;
+            // Lyd-effekt
         } else {
             Misc.message(ctx, "Already loaded");
         }
@@ -32,27 +36,31 @@ public class Revolver {
     public void roll() {
         // Lyd-effekt
         isRolled = true;
-        rollAnimation();
         rolledNumber = (int) (Math.random()*6+1);
+        rollAnimation();
     }
 
     public void fire() {
-        if(!isLoaded){
+
+        if(!isLoaded) {
             Misc.message(ctx, "Reload the gun");
             return;
         }
-        if(!isRolled){
+        if(!isRolled) {
             Misc.message(ctx, "Roll the gun");
             return;
         }
 
 
-        if(rolledNumber == 1){
-            // Skyd.
+
+        if(isRolled && rolledNumber == 6) {
+            // Skyd
+
             isLoaded = false;
             // Lyd effekt
+        } else {
+            chamber.setImageResource(R.drawable.chamber_empty);
         }
-
     }
 
     private void rollAnimation(){
@@ -75,7 +83,8 @@ public class Revolver {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-
+                // skift billede til pistol-løb
+                chamber.setImageResource(R.drawable.barrel);
             }
 
             @Override
