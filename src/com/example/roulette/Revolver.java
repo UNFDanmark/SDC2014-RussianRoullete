@@ -59,7 +59,10 @@ public class Revolver {
         RotateAnimation anim = new RotateAnimation(0f, 360f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         anim.setInterpolator(new LinearInterpolator());
         anim.setRepeatCount(Animation.INFINITE);
-        anim.setDuration(250);
+
+        long randomDuration = 20 + (long)(Math.random() * 200);
+        anim.setDuration(randomDuration);
+        System.out.println(randomDuration);
 
         chamber.startAnimation(anim);
         anim.setAnimationListener(new Animation.AnimationListener() {
@@ -75,7 +78,17 @@ public class Revolver {
 
             @Override
             public void onAnimationRepeat(Animation animation) {
-                animation.setDuration(animation.getDuration() + animation.getRepeatCount() * 2);
+                /*
+                if(animation.getDuration() > 1500) {
+                    chamber.clearAnimation();
+                } else if(animation.getDuration() > 1000){
+                    animation.setDuration(animation.getDuration() + 300);
+                } else if(animation.getDuration() > 500){
+                    animation.setDuration(animation.getDuration() + 200);
+                } else {
+                    animation.setDuration(animation.getDuration() + 50);
+                }
+                */
             }
         });
     }
