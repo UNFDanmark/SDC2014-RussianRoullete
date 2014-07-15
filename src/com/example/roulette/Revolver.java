@@ -2,11 +2,12 @@ package com.example.roulette;
 
 
 import android.content.Context;
-import android.widget.Toast;
-import android.app.Activity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
+import android.widget.ImageView;
+
+import java.util.concurrent.TimeUnit;
 
 public class Revolver {
 
@@ -14,10 +15,11 @@ public class Revolver {
     private int rolledNumber = 1;       // tilfældigt tal fra 1 til 6
     private int tries = 0;              // forsøg på skud
     private boolean isRolled = false;     // Er revolver cylinderen blevet rolled?
+    public Context ctx;
+    public ImageView chamber;
 
-
-    public void reload(Context ctx) {
-        Toast.makeText(ctx, "Gun has been reloaded", Toast.LENGTH_LONG).show();
+    public void reload() {
+        Misc.message(ctx, "Gun reloaded");
         // Lyd-effekt
         isLoaded = true;
     }
@@ -25,16 +27,17 @@ public class Revolver {
     public int roll() {
         // Lyd-effekt
         isRolled = true;
+        rollAnimation();
         return (int) (Math.random()*6+1);
     }
 
-    public void fire(Context ctx) {
+    public void fire() {
         if(!isRolled){
-            Toast.makeText(ctx, "Roll the gun", Toast.LENGTH_LONG).show();
+            Misc.message(ctx, "Roll the gun");
             return;
         }
         if(!isLoaded){
-            Toast.makeText(ctx, "Reload the gun", Toast.LENGTH_LONG).show();
+            Misc.message(ctx, "Reload the gun");
             return;
         }
 
@@ -46,4 +49,30 @@ public class Revolver {
 
     }
 
+    private void rollAnimation(){
+        RotateAnimation anim = new RotateAnimation(0f, 360f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        anim.setInterpolator(new LinearInterpolator());
+        anim.setRepeatCount(Animation.INFINITE);
+        anim.setDuration(250);
+
+        chamber.startAnimation(anim);
+        anim.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+                animation.setDuration(animation.getDuration() + animation.getRepeatCount() * 2);
+            }
+        });
+    }
+
 }
+

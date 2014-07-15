@@ -1,9 +1,12 @@
 package com.example.roulette;
 
 import android.app.Activity;
+import android.media.Image;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 public class SocialRoulette extends Activity {
 
@@ -11,6 +14,7 @@ public class SocialRoulette extends Activity {
     Button buttonFire;
     Button buttonReload;
     Revolver revolver;
+    ImageView chamber;
 
     /**
      * Called when the activity is first created.
@@ -22,17 +26,22 @@ public class SocialRoulette extends Activity {
 
         buttonFire = (Button) findViewById(R.id.buttonFire);
         buttonReload = (Button) findViewById(R.id.buttonReload);
+        chamber = (ImageView) findViewById(R.id.imageView);
+
         revolver = new Revolver();
+        revolver.ctx = getApplicationContext();
+        revolver.chamber = chamber;
+
         buttonFire.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                revolver.fire(getApplicationContext());
+                revolver.roll();
             }
         });
         buttonReload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                revolver.reload(getApplicationContext());
+                revolver.reload();
             }
         });
     }
