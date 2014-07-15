@@ -17,6 +17,7 @@ public class Revolver {
 
 
     public void reload(Context ctx) {
+        Toast.makeText(ctx, "Gun has been reloaded", Toast.LENGTH_LONG).show();
         // Lyd-effekt
         isLoaded = true;
     }
@@ -29,11 +30,11 @@ public class Revolver {
 
     public void fire(Context ctx) {
         if(!isRolled){
-            Toast.makeText(ctx, "Roll the gun.", Toast.LENGTH_LONG).show();
+            Toast.makeText(ctx, "Roll the gun", Toast.LENGTH_LONG).show();
             return;
         }
         if(!isLoaded){
-            Toast.makeText(ctx, "Reload the gun.", Toast.LENGTH_LONG).show();
+            Toast.makeText(ctx, "Reload the gun", Toast.LENGTH_LONG).show();
             return;
         }
 
