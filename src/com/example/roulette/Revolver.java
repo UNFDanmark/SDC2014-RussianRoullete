@@ -19,7 +19,7 @@ public class Revolver {
     public ImageView chamber;
 
     public void reload() {
-        if (isLoaded=false) {
+        if (!isLoaded) {
             Misc.message(ctx, "Reloaded");
             // Lyd-effekt
             isLoaded = true;
@@ -37,17 +37,17 @@ public class Revolver {
     }
 
     public void fire() {
+        if(!isLoaded){
+            Misc.message(ctx, "Reload the gun");
+            return;
+        }
         if(!isRolled){
             Misc.message(ctx, "Roll the gun");
             return;
         }
-        if(isLoaded){
-            Misc.message(ctx, "Reload the gun");
-            return;
-        }
 
 
-        if(rolledNumber == 6){
+        if(rolledNumber == 1){
             // Skyd.
             isLoaded = false;
             // Lyd effekt

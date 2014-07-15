@@ -39,7 +39,6 @@ public class SocialRoulette extends Activity {
         buttonFire.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                revolver.roll();
                 revolver.fire();
             }
         });
