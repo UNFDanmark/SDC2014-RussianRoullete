@@ -14,14 +14,19 @@ public class Revolver {
     private boolean isLoaded = false;   // er rovolveren loaded?
     private int rolledNumber = 1;       // tilfældigt tal fra 1 til 6
     private int tries = 0;              // forsøg på skud
-    private boolean isRolled = false;     // Er revolver cylinderen blevet rolled?
+    private boolean isRolled = false;   // Er revolver cylinderen blevet rolled?
     public Context ctx;
     public ImageView chamber;
 
     public void reload() {
-        Misc.message(ctx, "Gun reloaded");
-        // Lyd-effekt
-        isLoaded = true;
+        if (isLoaded=false) {
+            Misc.message(ctx, "Reloaded");
+            // Lyd-effekt
+            isLoaded = true;
+        } else {
+            Misc.message(ctx, "Already loaded");
+        }
+
     }
 
     public int roll() {
@@ -44,6 +49,7 @@ public class Revolver {
 
         if(rolledNumber == 6){
             // Skyd.
+            isLoaded = false;
             // Lyd effekt
         }
 
