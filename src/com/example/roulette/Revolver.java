@@ -66,6 +66,8 @@ public class Revolver {
 
         chamber.startAnimation(anim);
         anim.setAnimationListener(new Animation.AnimationListener() {
+            int numRepeats = 0;
+
             @Override
             public void onAnimationStart(Animation animation) {
 
@@ -78,17 +80,12 @@ public class Revolver {
 
             @Override
             public void onAnimationRepeat(Animation animation) {
-                /*
-                if(animation.getDuration() > 1500) {
+                animation.setDuration(animation.getDuration() + numRepeats * 10);
+                if(numRepeats >= 11){
                     chamber.clearAnimation();
-                } else if(animation.getDuration() > 1000){
-                    animation.setDuration(animation.getDuration() + 300);
-                } else if(animation.getDuration() > 500){
-                    animation.setDuration(animation.getDuration() + 200);
-                } else {
-                    animation.setDuration(animation.getDuration() + 50);
                 }
-                */
+
+                numRepeats++;
             }
         });
     }
