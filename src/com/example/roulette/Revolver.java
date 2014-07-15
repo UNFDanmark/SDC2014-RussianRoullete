@@ -29,11 +29,11 @@ public class Revolver {
 
     }
 
-    public int roll() {
+    public void roll() {
         // Lyd-effekt
         isRolled = true;
         rollAnimation();
-        return (int) (Math.random()*6+1);
+        rolledNumber = (int) (Math.random()*6+1);
     }
 
     public void fire() {
@@ -41,7 +41,7 @@ public class Revolver {
             Misc.message(ctx, "Roll the gun");
             return;
         }
-        if(!isLoaded){
+        if(isLoaded){
             Misc.message(ctx, "Reload the gun");
             return;
         }
