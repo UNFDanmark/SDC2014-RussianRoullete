@@ -27,7 +27,7 @@ public class Revolver {
     public ImageView chamber;           // chamber of the gun. Can be: empty, loaded or chamber
     public LinearLayout mainScreen;     // used to change background image/-color
 
-    public void reload() {
+    public void reload() {              // reload function
         if (!isLoaded) {
 
             // change to loaded chamber
@@ -40,7 +40,7 @@ public class Revolver {
 
     }
 
-    public void roll(long swipeSpeed, boolean swipeDirection) {
+    public void roll(long swipeSpeed, boolean swipeDirection) {     // death calculator
         if (isRolled) {
             return;
         }

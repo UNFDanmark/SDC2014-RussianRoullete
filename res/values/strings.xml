@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Russian Roulette</string>
+    <string name="app_name">Social Roulette</string>
     <string name="title">SOCIAL ROULETTE</string>
     <string name="fire">Fire!</string>
     <string name="reload">Reload</string>
     <string name="info">information</string>
+    <string name="youdied">You Died \nGood luck explaining this message</string>
 
 </resources>
