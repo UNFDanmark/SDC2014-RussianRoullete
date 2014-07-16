@@ -10,6 +10,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+
+
+
 public class SocialRoulette extends Activity {
 
 
@@ -52,7 +55,7 @@ public class SocialRoulette extends Activity {
         title = (TextView) findViewById(R.id.title);
 
         revolver = new Revolver();
-        revolver.ctx = getApplicationContext();
+        revolver.ctx = this;
         revolver.chamber = chamber;
         revolver.mainScreen = parentScreen;
 
@@ -126,4 +129,5 @@ public class SocialRoulette extends Activity {
             return true;
         }
     }
+
 }
