@@ -9,6 +9,8 @@ import android.widget.ImageView;
 
 import java.util.concurrent.TimeUnit;
 
+
+
 public class Revolver {
 
     private boolean isLoaded = false;   // er rovolveren loaded?

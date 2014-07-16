@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 
 public class SocialRoulette extends Activity {
 
+
     // Elements
     Button buttonFire;
     Button buttonReload;
@@ -26,6 +27,8 @@ public class SocialRoulette extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+
+        getActionBar().hide();
 
         buttonFire = (Button) findViewById(R.id.buttonFire);
         buttonReload = (Button) findViewById(R.id.buttonReload);
