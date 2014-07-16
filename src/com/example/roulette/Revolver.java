@@ -32,7 +32,7 @@ public class Revolver {
             // skift billede til ladt
             chamber.setImageResource(R.drawable.chamber);
 
-            Misc.message(ctx, "Reloaded");
+            Misc.message(ctx, "Loaded th gun");
             isLoaded = true;
             // Lyd-effekt
         } else {
@@ -42,8 +42,9 @@ public class Revolver {
     }
 
     public void roll(long swipeSpeed, boolean swipeDirection) {
-        if(isRolled)
+        if(isRolled) {
             return;
+        }
 
         // Lyd-effekt
         isRolled = true;
@@ -54,11 +55,12 @@ public class Revolver {
     public void fire() {
 
         if(!isLoaded) {
-            Misc.message(ctx, "Reload the gun");
+            Misc.message(ctx, "Please load the gun");
             return;
         }
+
         if(!isRolled) {
-            Misc.message(ctx, "Roll the gun");
+            Misc.message(ctx, "Please roll the gun");
             return;
         }
 
@@ -69,10 +71,10 @@ public class Revolver {
 
             isLoaded = false;
             // Lyd effekt
-        } else {
-            chamber.setImageResource(R.drawable.chamber_empty);
         }
     }
+
+
 
     /*
     Animate gun chamber.
@@ -123,11 +125,18 @@ public class Revolver {
                 animation.setDuration((long)(animation.getDuration() + (numRepeats * 50) * animation.getDuration() / 1500.0));
                 if(animation.getDuration() >= 1500){
                     isRolled = false;
+
                     // skift billede til pistol-løb
                     chamber.setImageResource(R.drawable.barrel);
-                    mainScreen.setBackground(null);
+
+                    // skift baggrund til sort
                     mainScreen.setBackgroundColor(Color.parseColor("black"));
+
+                    // stop animation
                     chamber.clearAnimation();
+
+                    // deactivate reloadbutton
+
                 }
 
                 numRepeats++;
