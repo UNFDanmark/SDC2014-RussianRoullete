@@ -18,7 +18,7 @@ public class SocialRoulette extends Activity {
     Button buttonReload;
     Revolver revolver;
     ImageView chamber;
-    LinearLayout mainScreen;
+    LinearLayout parentScreen;
 
     // Detectors
     GestureDetector gestureDetector;
@@ -44,11 +44,12 @@ public class SocialRoulette extends Activity {
         buttonFire = (Button) findViewById(R.id.buttonFire);
         buttonReload = (Button) findViewById(R.id.buttonReload);
         chamber = (ImageView) findViewById(R.id.imageView);
-        mainScreen = (LinearLayout) findViewById(R.id.parentScreen);
+        parentScreen = (LinearLayout) findViewById(R.id.parentScreen);
 
         revolver = new Revolver();
         revolver.ctx = getApplicationContext();
         revolver.chamber = chamber;
+        revolver.mainScreen = parentScreen;
 
         display = getWindowManager().getDefaultDisplay();
         screenDimensions = new Point();
@@ -76,7 +77,7 @@ public class SocialRoulette extends Activity {
             }
         };
 
-        mainScreen.setOnTouchListener(gestureListener);
+        parentScreen.setOnTouchListener(gestureListener);
     }
 
     class MyGestureDetector extends GestureDetector.SimpleOnGestureListener {

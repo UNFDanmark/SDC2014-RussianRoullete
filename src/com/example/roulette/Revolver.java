@@ -2,10 +2,12 @@ package com.example.roulette;
 
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import java.util.concurrent.TimeUnit;
 
@@ -22,6 +24,7 @@ public class Revolver {
 
     public Context ctx;
     public ImageView chamber;
+    public LinearLayout mainScreen;
 
     public void reload() {
         if (!isLoaded) {
@@ -105,7 +108,9 @@ public class Revolver {
             public void onAnimationEnd(Animation animation) {
                 isRolled = false;
                 // skift billede til pistol-løb
-                //chamber.setImageResource(R.drawable.barrel);
+                chamber.setImageResource(R.drawable.barrel);
+                mainScreen.setBackground(null);
+
             }
 
             @Override
