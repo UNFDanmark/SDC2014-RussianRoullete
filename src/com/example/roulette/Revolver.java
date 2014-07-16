@@ -32,7 +32,7 @@ public class Revolver {
             // skift billede til ladt
             chamber.setImageResource(R.drawable.chamber);
 
-            Misc.message(ctx, "Loaded th gun");
+            Misc.message(ctx, "Loaded the gun");
             isLoaded = true;
             // Lyd-effekt
         } else {
