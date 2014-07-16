@@ -29,10 +29,9 @@ public class Revolver {
     public void reload() {
         if (!isLoaded) {
 
-            // skift billede til ladt
+            // change to loaded chamber
             chamber.setImageResource(R.drawable.chamber);
 
-            Misc.message(ctx, "Loaded th gun");
             isLoaded = true;
             // Lyd-effekt
         } else {
@@ -81,12 +80,13 @@ public class Revolver {
         // black background
         mainScreen.setBackgroundColor(Color.parseColor("black"));
 
-        // stop animation
-        chamber.clearAnimation();
-
         // deactivate reloadbutton
+        ((SocialRoulette) ctx).buttonReload.setAlpha(0.6f);
+        ((SocialRoulette) ctx).buttonReload.setEnabled(false);
 
         // activate firebutton
+        ((SocialRoulette) ctx).buttonFire.setAlpha(1f);
+        ((SocialRoulette) ctx).buttonFire.setEnabled(true);
     }
 
 
@@ -141,7 +141,13 @@ public class Revolver {
                     hndl.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            showRevolver();
+                            if (isLoaded) {
+                                showRevolver();
+                            } else {
+                                isRolled = false;
+                            }
+                            // stop animation
+                            chamber.clearAnimation();
                         }
                     }, (long) (500 + 500 * Math.random()));
                 }
