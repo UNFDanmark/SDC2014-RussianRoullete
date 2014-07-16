@@ -10,16 +10,16 @@ import android.widget.LinearLayout;
 
 public class Revolver {
 
-    private boolean isLoaded = false;   // er rovolveren loaded?
-    private int rolledNumber = 1;       // tilfældigt tal fra 1 til 6
-    private int tries = 0;              // forsøg på skud
-    private boolean isRolled = false;   // Er revolver cylinderen blevet rolled?
-    private int maxRollSpeed = 800;
-    private int minRollSpeed = 50;
+    private boolean isLoaded = false;   // revolver not loaded yet
+    private int rolledNumber = 1;       // random number from 1 to 6
+    private int tries = 0;              // count tries to shoot
+    private boolean isRolled = false;   // did the chamber roll?
+    private int maxRollSpeed = 800;     // max roll speed for chamber
+    private int minRollSpeed = 50;      // min roll speed for chamber
 
-    public Context ctx;
-    public ImageView chamber;
-    public LinearLayout mainScreen;
+    public Context ctx;                 // holds toast syntax
+    public ImageView chamber;           // chamber of the gun. Can be: empty, loaded or chamber
+    public LinearLayout mainScreen;     // used to change background image/-color
 
     public void reload() {
         if (!isLoaded) {
@@ -63,9 +63,7 @@ public class Revolver {
             // Skyd
 
             isLoaded = false;
-            // Lyd effekt
-        } else {
-            chamber.setImageResource(R.drawable.chamber_empty);
+            // soundeffect
         }
     }
 
