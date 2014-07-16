@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +20,9 @@ public class SocialRoulette extends Activity {
     Revolver revolver;
     ImageView chamber;
     LinearLayout mainScreen;
+
+    // Detectors
+    GestureDetector gestureDetector;
 
     /**
      * Called when the activity is first created.
@@ -49,20 +53,6 @@ public class SocialRoulette extends Activity {
             @Override
             public void onClick(View v) {
                 revolver.reload();
-            }
-        });
-
-        mainScreen.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                switch(event.getAction()){
-                    case MotionEvent.ACTION_DOWN:
-                        float initialY = event.getY();
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        break;
-                }
-                return true;
             }
         });
     }
