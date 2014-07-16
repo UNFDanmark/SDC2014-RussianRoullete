@@ -22,6 +22,7 @@ public class Revolver {
     private boolean isRolled = false;   // did the chamber roll?
     private int maxRollSpeed = 800;     // max roll speed for chamber
     private int minRollSpeed = 50;      // min roll speed for chamber
+    private MediaPlayer mediaPlayer;
 
     public Context ctx;
     public ImageView chamber;           // chamber of the gun. Can be: empty, loaded or chamber
@@ -46,8 +47,10 @@ public class Revolver {
         }
 
         // soundeffect "rolling chamber"
-        MediaPlayer mediaPlayer = MediaPlayer.create(ctx,R.raw.chamber);
+        mediaPlayer = MediaPlayer.create(ctx, R.raw.chamber);
         mediaPlayer.start();
+
+
 
         isRolled = true;
         rolledNumber = (int) (Math.random() * 6 + 1);
@@ -73,7 +76,7 @@ public class Revolver {
             // flash img?
 
             // soundeffect "bang"
-            MediaPlayer mediaPlayer = MediaPlayer.create(ctx,R.raw.bang);
+            mediaPlayer = MediaPlayer.create(ctx,R.raw.bang);
             mediaPlayer.start();
 
             isLoaded = false;
@@ -191,7 +194,7 @@ public class Revolver {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-
+                mediaPlayer.stop();
             }
 
             @Override
