@@ -41,8 +41,6 @@ public class SocialRoulette extends Activity {
 
         setContentView(R.layout.main);
 
-
-
         buttonFire = (Button) findViewById(R.id.buttonFire);
         buttonReload = (Button) findViewById(R.id.buttonReload);
         chamber = (ImageView) findViewById(R.id.imageView);

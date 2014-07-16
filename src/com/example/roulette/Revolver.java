@@ -39,6 +39,9 @@ public class Revolver {
     }
 
     public void roll(long swipeSpeed, boolean swipeDirection) {
+        if(isRolled)
+            return;
+
         // Lyd-effekt
         isRolled = true;
         rolledNumber = (int) (Math.random()*6+1);
@@ -74,11 +77,12 @@ public class Revolver {
      */
     private void rollAnimation(long swipeSpeed, boolean swipeDirection){
         RotateAnimation anim;
-
+        float initialAng = chamber.getRotation();
+        System.out.println(initialAng);
         if(swipeDirection) {
-            anim = new RotateAnimation(360f, 0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+            anim = new RotateAnimation(initialAng + 360f, initialAng, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         } else {
-            anim = new RotateAnimation(0f, 360f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+            anim = new RotateAnimation(initialAng, initialAng + 360f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         }
         anim.setInterpolator(new LinearInterpolator());
         anim.setRepeatCount(Animation.INFINITE);
@@ -99,6 +103,7 @@ public class Revolver {
 
             @Override
             public void onAnimationEnd(Animation animation) {
+                isRolled = false;
                 // skift billede til pistol-løb
                 //chamber.setImageResource(R.drawable.barrel);
             }
