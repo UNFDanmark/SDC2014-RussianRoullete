@@ -1,8 +1,6 @@
 package com.example.roulette;
 
 import android.content.Context;
-import android.media.Image;
-import android.os.Handler;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
