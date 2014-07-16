@@ -17,6 +17,9 @@ public class Revolver {
     private int rolledNumber = 1;       // tilfældigt tal fra 1 til 6
     private int tries = 0;              // forsøg på skud
     private boolean isRolled = false;   // Er revolver cylinderen blevet rolled?
+    private int maxRollSpeed = 800;
+    private int minRollSpeed = 50;
+
     public Context ctx;
     public ImageView chamber;
 
@@ -35,11 +38,11 @@ public class Revolver {
 
     }
 
-    public void roll() {
+    public void roll(long swipeSpeed, boolean swipeDirection) {
         // Lyd-effekt
         isRolled = true;
         rolledNumber = (int) (Math.random()*6+1);
-        rollAnimation();
+        rollAnimation(swipeSpeed, swipeDirection);
     }
 
     public void fire() {
@@ -65,14 +68,25 @@ public class Revolver {
         }
     }
 
-    private void rollAnimation(){
-        RotateAnimation anim = new RotateAnimation(0f, 360f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+    /*
+    Animate gun chamber.
+    swipeSpeed: int fr
+     */
+    private void rollAnimation(long swipeSpeed, boolean swipeDirection){
+        RotateAnimation anim;
+
+        if(swipeDirection) {
+            anim = new RotateAnimation(360f, 0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        } else {
+            anim = new RotateAnimation(0f, 360f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        }
         anim.setInterpolator(new LinearInterpolator());
         anim.setRepeatCount(Animation.INFINITE);
 
-        long randomDuration = 20 + (long)(Math.random() * 200);
-        anim.setDuration(randomDuration);
-        System.out.println(randomDuration);
+        double swipePercentage = swipeSpeed / 16000.0;
+        long calculatedDuration = (long)(maxRollSpeed - (maxRollSpeed - minRollSpeed) * swipePercentage);
+        System.out.println(calculatedDuration);
+        anim.setDuration(calculatedDuration);
 
         chamber.startAnimation(anim);
         anim.setAnimationListener(new Animation.AnimationListener() {
@@ -86,13 +100,13 @@ public class Revolver {
             @Override
             public void onAnimationEnd(Animation animation) {
                 // skift billede til pistol-løb
-                chamber.setImageResource(R.drawable.barrel);
+                //chamber.setImageResource(R.drawable.barrel);
             }
 
             @Override
             public void onAnimationRepeat(Animation animation) {
-                animation.setDuration(animation.getDuration() + numRepeats * 10);
-                if(numRepeats >= 11){
+                animation.setDuration((long)(animation.getDuration() + (numRepeats * 50) * animation.getDuration() / 1500.0));
+                if(animation.getDuration() >= 1500){
                     chamber.clearAnimation();
                 }
 

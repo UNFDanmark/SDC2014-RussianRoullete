@@ -5,7 +5,8 @@
           android:versionName="1.0">
     <uses-sdk android:minSdkVersion="15"/>
     <application android:label="@string/app_name" android:icon="@drawable/ic_launcher">
-        <activity android:name="com.example.roulette.SocialRoulette"
+
+        <activity android:name="com.example.roulette.SocialRoulette" android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
                   android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
