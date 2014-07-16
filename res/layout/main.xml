@@ -4,7 +4,7 @@
               android:layout_width="fill_parent"
               android:layout_height="match_parent"
               android:weightSum="1" android:id="@+id/parentScreen"
-              android:background="@drawable/realflames2">
+              android:background="@drawable/realflames">
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
