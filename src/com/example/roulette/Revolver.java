@@ -1,16 +1,11 @@
 package com.example.roulette;
 
-
-import android.animation.AnimatorSet;
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
+import android.os.Handler;
 import android.view.animation.*;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-
-import java.util.concurrent.TimeUnit;
-
 
 
 public class Revolver {
@@ -42,46 +37,51 @@ public class Revolver {
     }
 
     public void roll(long swipeSpeed, boolean swipeDirection) {
-        if(isRolled) {
+        if (isRolled) {
             return;
         }
-
         // Lyd-effekt
         isRolled = true;
-        rolledNumber = (int) (Math.random()*6+1);
+        rolledNumber = (int) (Math.random() * 6 + 1);
         rollAnimation(swipeSpeed, swipeDirection);
     }
 
     public void fire() {
 
-        if(!isLoaded) {
+        if (!isLoaded) {
             Misc.message(ctx, "Please load the gun");
             return;
         }
 
-        if(!isRolled) {
+        if (!isRolled) {
             Misc.message(ctx, "Please roll the gun");
             return;
         }
 
 
-
-        if(isRolled && rolledNumber == 6) {
+        if (isRolled && rolledNumber == 6) {
             // Skyd
 
             isLoaded = false;
             // Lyd effekt
+        } else {
+            chamber.setImageResource(R.drawable.chamber_empty);
         }
     }
 
-
+    private void showRevolver() {
+        chamber.setImageResource(R.drawable.barrel);
+        mainScreen.setBackground(null);
+        mainScreen.setBackgroundColor(Color.parseColor("black"));
+        chamber.clearAnimation();
+    }
 
     /*
     Animate gun chamber.
     swipeSpeed: int fr
      */
-    private void rollAnimation(long swipeSpeed, boolean swipeDirection){
-        AnimationSet animSet;
+    private void rollAnimation(long swipeSpeed, boolean swipeDirection) {
+        final Handler hndl = new Handler();
 
         Animation fadeIn = new AlphaAnimation(0, 1);
         fadeIn.setInterpolator(new DecelerateInterpolator());
@@ -93,7 +93,7 @@ public class Revolver {
 
         RotateAnimation rollAnim;
 
-        if(swipeDirection) {
+        if (swipeDirection) {
             rollAnim = new RotateAnimation(360f, 0, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         } else {
             rollAnim = new RotateAnimation(0, 360f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
@@ -102,7 +102,7 @@ public class Revolver {
         rollAnim.setRepeatCount(Animation.INFINITE);
 
         double swipePercentage = swipeSpeed / 16000.0;
-        long calculatedDuration = (long)(maxRollSpeed - (maxRollSpeed - minRollSpeed) * swipePercentage);
+        long calculatedDuration = (long) (maxRollSpeed - (maxRollSpeed - minRollSpeed) * swipePercentage);
         rollAnim.setDuration(calculatedDuration);
 
         chamber.startAnimation(rollAnim);
@@ -122,27 +122,19 @@ public class Revolver {
 
             @Override
             public void onAnimationRepeat(Animation animation) {
-                animation.setDuration((long)(animation.getDuration() + (numRepeats * 50) * animation.getDuration() / 1500.0));
-                if(animation.getDuration() >= 1500){
-                    isRolled = false;
-
-                    // skift billede til pistol-løb
-                    chamber.setImageResource(R.drawable.barrel);
-
-                    // skift baggrund til sort
-                    mainScreen.setBackgroundColor(Color.parseColor("black"));
-
-                    // stop animation
-                    chamber.clearAnimation();
-
-                    // deactivate reloadbutton
-
+                animation.setDuration((long) (animation.getDuration() + (numRepeats * 50) * animation.getDuration() / 1500.0));
+                if (animation.getDuration() >= 1500) {
+                    hndl.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            showRevolver();
+                        }
+                    }, (long) (500 + 500 * Math.random()));
                 }
 
                 numRepeats++;
             }
         });
     }
-
 }
 
