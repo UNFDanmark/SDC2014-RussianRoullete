@@ -20,9 +20,8 @@
             android:paddingTop="50dp"
 
             android:typeface="serif"
-            android:textSize="35sp"
             android:textStyle="bold"
-            android:textIsSelectable="false"/>
+            android:textIsSelectable="false" android:textSize="45sp"/>
 
     <LinearLayout
             android:orientation="vertical"

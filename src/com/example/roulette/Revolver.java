@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.view.animation.*;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.media.MediaPlayer;
 
 import java.util.concurrent.TimeUnit;
 
@@ -22,7 +23,7 @@ public class Revolver {
     private int maxRollSpeed = 800;     // max roll speed for chamber
     private int minRollSpeed = 50;      // min roll speed for chamber
 
-    public Context ctx;                 // holds toast syntax
+    public Context ctx;
     public ImageView chamber;           // chamber of the gun. Can be: empty, loaded or chamber
     public LinearLayout mainScreen;     // used to change background image/-color
 
@@ -33,7 +34,6 @@ public class Revolver {
             chamber.setImageResource(R.drawable.chamber);
 
             isLoaded = true;
-            // Lyd-effekt
         } else {
             Misc.message(ctx, "Already loaded");
         }
@@ -45,7 +45,10 @@ public class Revolver {
             return;
         }
 
-        // Lyd-effekt
+        // soundeffect "rolling chamber"
+        MediaPlayer mediaPlayer = MediaPlayer.create(ctx,R.raw.chamber);
+        mediaPlayer.start();
+
         isRolled = true;
         rolledNumber = (int) (Math.random() * 6 + 1);
         rollAnimation(swipeSpeed, swipeDirection);
@@ -63,18 +66,75 @@ public class Revolver {
             return;
         }
 
-
+        // Shoot
         if (isRolled && rolledNumber == 6) {
-            // Skyd
+
+
+            // flash img?
+
+            // soundeffect "bang"
+            MediaPlayer mediaPlayer = MediaPlayer.create(ctx,R.raw.bang);
+            mediaPlayer.start();
 
             isLoaded = false;
-            // soundeffect
+            isRolled = false;
+
+            // deactivate fire button
+            ((SocialRoulette) ctx).buttonFire.setAlpha(0.6f);
+            ((SocialRoulette) ctx).buttonFire.setEnabled(false);
+
+            // sleep until sound is played
+            try {
+                Thread.sleep(1000);
+            } catch (Exception e){
+
+            }
+
+            // activate reload button
+            ((SocialRoulette) ctx).buttonReload.setAlpha(1f);
+            ((SocialRoulette) ctx).buttonReload.setEnabled(true);
+
+            // show empty chamber img
+            //System.out.println("Sunik ");
+            chamber.setImageResource(R.drawable.chamber_empty);
+
+            // background flames
+            mainScreen.setBackgroundResource(R.drawable.realflames);
+
+        } else {
+            // soundeffect "click"
+            MediaPlayer mediaPlayer = MediaPlayer.create(ctx,R.raw.click);
+            mediaPlayer.start();
+
+            isLoaded = true;
+            isRolled = false;
+
+            // deactivate fire button
+            ((SocialRoulette) ctx).buttonFire.setAlpha(0.6f);
+            ((SocialRoulette) ctx).buttonFire.setEnabled(false);
+
+            // sleep until sound is played
+            try {
+                Thread.sleep(1000);
+            } catch (Exception e){
+
+            }
+
+            // show loaded chamber img
+            chamber.setImageResource(R.drawable.chamber);
+
+            // background flames
+            mainScreen.setBackgroundResource(R.drawable.realflames);
+
         }
+
     }
+
+
 
     private void showRevolver() {
 
-        // show chamber img
+        // show barrel img
         chamber.setImageResource(R.drawable.barrel);
 
         // black background
@@ -156,5 +216,7 @@ public class Revolver {
             }
         });
     }
+
+
 }
 
