@@ -2,6 +2,7 @@ package com.example.roulette;
 
 import android.app.Activity;
 import android.graphics.Point;
+import android.graphics.Typeface;
 import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,6 +10,7 @@ import android.view.*;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class SocialRoulette extends Activity {
 
@@ -19,6 +21,7 @@ public class SocialRoulette extends Activity {
     Revolver revolver;
     ImageView chamber;
     LinearLayout parentScreen;
+    TextView title;
 
     // Detectors
     GestureDetector gestureDetector;
@@ -27,6 +30,9 @@ public class SocialRoulette extends Activity {
     // Get dimensions
     Display display;
     Point screenDimensions;
+
+    // Fonts
+    Typeface tf;
 
     private static final int SWIPE_MIN_DISTANCE = 200;
     private static final int SWIPE_MAX_OFF_PATH = 250;
@@ -45,17 +51,22 @@ public class SocialRoulette extends Activity {
         buttonReload = (Button) findViewById(R.id.buttonReload);
         chamber = (ImageView) findViewById(R.id.imageView);
         parentScreen = (LinearLayout) findViewById(R.id.parentScreen);
+        title = (TextView) findViewById(R.id.title);
 
         revolver = new Revolver();
         revolver.ctx = getApplicationContext();
         revolver.chamber = chamber;
         revolver.mainScreen = parentScreen;
 
+        tf = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/russian.ttf");
+        title.setTypeface(tf);
+
         display = getWindowManager().getDefaultDisplay();
         screenDimensions = new Point();
 
         display.getSize(screenDimensions);
-
+        buttonFire.setEnabled(false);
+        buttonFire.setAlpha(0.6f);
         buttonFire.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,22 +101,18 @@ public class SocialRoulette extends Activity {
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
             if(e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                System.out.println("Left with speed " + (long) Math.abs(velocityY));
                 direction = (e2.getY() < screenY / 2);
                 vertical = false;
             }  else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                System.out.println("Right with speed " + (long) Math.abs(velocityY));
                 direction = (e2.getY() >= screenY / 2);
                 vertical = false;
             // Down to up swipe
             } else if(e1.getY() - e2.getY() > SWIPE_MIN_DISTANCE && Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
-                System.out.println("Up with speed " + (long) Math.abs(velocityY));
                 direction = (e2.getX() >= screenX / 2);
                 vertical = true;
 
             // Up to down swipe
             }  else if (e2.getY() - e1.getY() > SWIPE_MIN_DISTANCE && Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
-                System.out.println("Down with speed " + (long)Math.abs(velocityY));
                 direction = (e2.getX() < screenX / 2);
                 vertical = true;
 

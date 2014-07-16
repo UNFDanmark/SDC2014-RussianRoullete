@@ -1,11 +1,11 @@
 package com.example.roulette;
 
 
+import android.animation.AnimatorSet;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.view.animation.Animation;
-import android.view.animation.LinearInterpolator;
-import android.view.animation.RotateAnimation;
+import android.view.animation.*;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -79,24 +79,33 @@ public class Revolver {
     swipeSpeed: int fr
      */
     private void rollAnimation(long swipeSpeed, boolean swipeDirection){
-        RotateAnimation anim;
-        float initialAng = chamber.getRotation();
-        System.out.println(initialAng);
+        AnimationSet animSet;
+
+        Animation fadeIn = new AlphaAnimation(0, 1);
+        fadeIn.setInterpolator(new DecelerateInterpolator());
+        fadeIn.setDuration(1000);
+
+        Animation fadeOut = new AlphaAnimation(1, 0);
+        fadeOut.setInterpolator(new AccelerateInterpolator());
+        fadeOut.setDuration(1000);
+
+        RotateAnimation rollAnim;
+
         if(swipeDirection) {
-            anim = new RotateAnimation(initialAng + 360f, initialAng, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+            rollAnim = new RotateAnimation(360f, 0, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         } else {
-            anim = new RotateAnimation(initialAng, initialAng + 360f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+            rollAnim = new RotateAnimation(0, 360f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         }
-        anim.setInterpolator(new LinearInterpolator());
-        anim.setRepeatCount(Animation.INFINITE);
+        rollAnim.setInterpolator(new LinearInterpolator());
+        rollAnim.setRepeatCount(Animation.INFINITE);
 
         double swipePercentage = swipeSpeed / 16000.0;
         long calculatedDuration = (long)(maxRollSpeed - (maxRollSpeed - minRollSpeed) * swipePercentage);
-        System.out.println(calculatedDuration);
-        anim.setDuration(calculatedDuration);
+        rollAnim.setDuration(calculatedDuration);
 
-        chamber.startAnimation(anim);
-        anim.setAnimationListener(new Animation.AnimationListener() {
+        chamber.startAnimation(rollAnim);
+
+        rollAnim.setAnimationListener(new Animation.AnimationListener() {
             int numRepeats = 0;
 
             @Override
@@ -106,10 +115,6 @@ public class Revolver {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                isRolled = false;
-                // skift billede til pistol-løb
-                chamber.setImageResource(R.drawable.barrel);
-                mainScreen.setBackground(null);
 
             }
 
@@ -117,6 +122,11 @@ public class Revolver {
             public void onAnimationRepeat(Animation animation) {
                 animation.setDuration((long)(animation.getDuration() + (numRepeats * 50) * animation.getDuration() / 1500.0));
                 if(animation.getDuration() >= 1500){
+                    isRolled = false;
+                    // skift billede til pistol-løb
+                    chamber.setImageResource(R.drawable.barrel);
+                    mainScreen.setBackground(null);
+                    mainScreen.setBackgroundColor(Color.parseColor("black"));
                     chamber.clearAnimation();
                 }
 
