@@ -3,17 +3,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent" android:weightSum="1" android:textAlignment="center">
+              android:layout_height="match_parent" android:weightSum="1" android:textAlignment="center"
+              android:background="@drawable/BLOD">
 
     <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/youdied"
             android:id="@+id/youdied" android:layout_gravity="center_horizontal" android:layout_weight="0.02"
-            android:textSize="60dp" android:textColor="#ffff1215" android:textStyle="bold" android:autoText="false"
+            android:textSize="60dp" android:textColor="#fffbfbff" android:textStyle="bold" android:autoText="false"
             android:clickable="false" android:editable="false" android:enabled="false"
-            android:background="@drawable/skull" android:textAlignment="center" android:singleLine="false"
-            android:phoneNumber="false" android:textColorHighlight="#ffffffff" android:textColorHint="#ffffffff"/>
+            android:textAlignment="center" android:singleLine="false"
+            android:phoneNumber="false" android:textColorHighlight="#ffffffff" android:textColorHint="#ffffffff"
+            />
     <ImageView
             android:layout_width="243dp"
             android:layout_height="70dp"
