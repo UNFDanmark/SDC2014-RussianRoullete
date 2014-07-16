@@ -1,11 +1,16 @@
 package com.example.roulette;
 
+
+import android.animation.AnimatorSet;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Handler;
 import android.view.animation.*;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import java.util.concurrent.TimeUnit;
+
 
 
 public class Revolver {
@@ -40,6 +45,7 @@ public class Revolver {
         if (isRolled) {
             return;
         }
+
         // Lyd-effekt
         isRolled = true;
         rolledNumber = (int) (Math.random() * 6 + 1);
@@ -68,11 +74,21 @@ public class Revolver {
     }
 
     private void showRevolver() {
+
+        // show chamber img
         chamber.setImageResource(R.drawable.barrel);
-        mainScreen.setBackground(null);
+
+        // black background
         mainScreen.setBackgroundColor(Color.parseColor("black"));
+
+        // stop animation
         chamber.clearAnimation();
+
+        // deactivate reloadbutton
+
+        // activate firebutton
     }
+
 
     /*
     Animate gun chamber.

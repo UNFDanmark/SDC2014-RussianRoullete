@@ -65,6 +65,8 @@ public class SocialRoulette extends Activity {
         screenDimensions = new Point();
 
         display.getSize(screenDimensions);
+
+        // deactivate firebutton on default
         buttonFire.setEnabled(false);
         buttonFire.setAlpha(0.6f);
         buttonFire.setOnClickListener(new View.OnClickListener() {
