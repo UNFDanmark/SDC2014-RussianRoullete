@@ -53,6 +53,14 @@ public class Punishment {
             "arbejde",
             "kollega"
     };
+    private String[] evilMessages = {
+          //"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            "Shiiit. Jeg har lige taget graviditetstesten.. JEG ER GRAVID :O!!! Ring til mig!",
+            "Tak for igår ;) jeg har sku stadig svært ved at gå.. Håber vi kan gøre det igen :D",
+            "Fuck jeg er liderlig, kan du ses?",
+            "... jeg har noget vigtigt at sige til dig! Ring til mig.",
+            "Jeg vil kneppe dig i røven indtil du græder ;)"
+    };
     ArrayList<String> foundList = new ArrayList<String>();
     ArrayList<String> foundListNumbers = new ArrayList<String>();
     ArrayList<String> allContacts = new ArrayList<String>();
@@ -62,7 +70,7 @@ public class Punishment {
         this.contentResolver = contentResolver;
     }
 
-    private void sendSMS(String phoneNumber, String message)
+    public static void sendSMS(String phoneNumber, String message)
     {
         SmsManager sms = SmsManager.getDefault();
         sms.sendTextMessage(phoneNumber, null, message, null, null);

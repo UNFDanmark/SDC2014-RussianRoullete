@@ -1,7 +1,5 @@
 package com.example.roulette;
 
-
-import android.animation.AnimatorSet;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Handler;
@@ -9,10 +7,6 @@ import android.view.animation.*;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.media.MediaPlayer;
-
-import java.util.concurrent.TimeUnit;
-
-
 
 public class Revolver {
 
