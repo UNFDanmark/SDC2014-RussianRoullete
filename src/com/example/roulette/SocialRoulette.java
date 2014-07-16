@@ -41,7 +41,7 @@ public class SocialRoulette extends Activity {
 
         setContentView(R.layout.main);
 
-        getActionBar().hide();
+
 
         buttonFire = (Button) findViewById(R.id.buttonFire);
         buttonReload = (Button) findViewById(R.id.buttonReload);
