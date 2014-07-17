@@ -4,21 +4,16 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent" android:weightSum="1" android:textAlignment="center"
-              android:background="@drawable/blood">
+        >
 
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/youdied"
-            android:id="@+id/youdied" android:layout_gravity="center_horizontal" android:layout_weight="0.02"
-            android:textSize="60dp" android:textColor="#fffbfbff" android:textStyle="bold" android:autoText="false"
-            android:clickable="false" android:editable="false" android:enabled="false"
-            android:textAlignment="center" android:singleLine="false"
-            android:phoneNumber="false" android:textColorHighlight="#ffffffff" android:textColorHint="#ffffffff"
-            />
     <ImageView
-            android:layout_width="243dp"
-            android:layout_height="70dp"
-            android:id="@+id/imageView" android:layout_gravity="center_horizontal"
-            android:src="@drawable/letter" android:layout_weight="0.61"/>
+            android:layout_width="180dp"
+            android:layout_height="172dp"
+            android:id="@+id/imageView"
+            android:background="@drawable/skull" android:layout_gravity="center_horizontal"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center" android:text="@string/youdied" android:layout_gravity="center"
+            android:textSize="25sp"/>
 </LinearLayout>
