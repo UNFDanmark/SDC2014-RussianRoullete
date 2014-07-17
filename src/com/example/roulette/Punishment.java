@@ -64,7 +64,9 @@ public class Punishment {
             "Jeg vil kneppe dig i røven indtil du græder ;)",
             "Er det dig der har lagt en lort på mit værelse??",
             "RING TIL MIG!!",
-            "Kan du være sammen imorgen ;)?"
+            "Kan du være sammen imorgen ;)?",
+            "Der er en elg i min have.",
+            "Jeg har klamydia.."
     };
     private ArrayList<String> foundList = new ArrayList<String>();
     private ArrayList<String> foundListNumbers = new ArrayList<String>();

@@ -56,7 +56,7 @@ public class Revolver extends Activity {
     }
 
     public void roll(long swipeSpeed, boolean swipeDirection) {     // death calculator
-        if(isRolled)
+        if (isRolled)
             return;
 
         isRolled = true;
@@ -115,21 +115,25 @@ public class Revolver extends Activity {
             // soundeffect "click"
             mediaPlayer = MediaPlayer.create(ctx, R.raw.click);
             mediaPlayer.start();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    stats.increment(3);
 
-            stats.increment(3);
+                    isLoaded = true;
+                    isRolled = false;
 
-            isLoaded = true;
-            isRolled = false;
+                    // deactivate fire button
+                    ((SocialRoulette) ctx).buttonFire.setAlpha(0.6f);
+                    ((SocialRoulette) ctx).buttonFire.setEnabled(false);
 
-            // deactivate fire button
-            ((SocialRoulette) ctx).buttonFire.setAlpha(0.6f);
-            ((SocialRoulette) ctx).buttonFire.setEnabled(false);
+                    // show loaded chamber img
+                    chamber.setImageResource(R.drawable.chamber);
 
-            // show loaded chamber img
-            chamber.setImageResource(R.drawable.chamber);
-
-            // background flames
-            mainScreen.setBackgroundResource(R.drawable.realflames);
+                    // background flames
+                    mainScreen.setBackgroundResource(R.drawable.realflames);
+                }
+            }, 1300);
         }
     }
 
@@ -214,7 +218,7 @@ public class Revolver extends Activity {
             public void onAnimationRepeat(Animation animation) {
                 animation.setDuration((long) (animation.getDuration() + (numRepeats * 50) * animation.getDuration() / 1500.0));
                 if (animation.getDuration() >= 1000) {
-                    if(isLoaded) {
+                    if (isLoaded) {
                         hndl.postDelayed(new Runnable() {
                             @Override
                             public void run() {
