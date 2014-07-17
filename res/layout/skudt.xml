@@ -4,7 +4,7 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent" android:weightSum="1" android:textAlignment="center"
-              android:background="@drawable/BLOD">
+              android:background="@drawable/blood">
 
     <TextView
             android:layout_width="match_parent"
@@ -20,5 +20,5 @@
             android:layout_width="243dp"
             android:layout_height="70dp"
             android:id="@+id/imageView" android:layout_gravity="center_horizontal"
-            android:src="@drawable/brev" android:layout_weight="0.61"/>
+            android:src="@drawable/letter" android:layout_weight="0.61"/>
 </LinearLayout>
