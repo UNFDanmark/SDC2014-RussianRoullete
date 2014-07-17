@@ -26,7 +26,7 @@ public class Revolver {
     public ImageView chamber;           // chamber of the gun. Can be: chamber (loaded), empty or barrel
     public LinearLayout mainScreen;     // used to change background image/-color
 
-    Revolver(Context ctx, ImageView chamber, LinearLayout mainScreen){
+    Revolver(Context ctx, ImageView chamber, LinearLayout mainScreen) {
         this.ctx = ctx;
         this.chamber = chamber;
         this.mainScreen = mainScreen;
@@ -60,74 +60,68 @@ public class Revolver {
     }
 
     public void fire() {
-        // Shoot
-        if (isRolled && rolledNumber == 6) {
-
-            if (!isRolled) {
-                Misc.message(ctx, "Please roll the gun");
-                return;
-            }
-
-            // Shoot
-            if (isRolled && rolledNumber == 6 || alwaysDie) {
-                // soundeffect "bang"
-                mediaPlayer = MediaPlayer.create(ctx, R.raw.bang);
-                mediaPlayer.start();
-
-                flasher.flash(1);
-
-                isLoaded = false;
-                isRolled = false;
-
-                // deactivate fire button
-                ((SocialRoulette) ctx).buttonFire.setAlpha(0.6f);
-                ((SocialRoulette) ctx).buttonFire.setEnabled(false);
-
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        // activate reload button
-                        ((SocialRoulette) ctx).buttonReload.setAlpha(1f);
-                        ((SocialRoulette) ctx).buttonReload.setEnabled(true);
-
-                        // show empty chamber img
-                        //System.out.println("Sunik ");
-                        chamber.setImageResource(R.drawable.chamber_empty);
-
-                        // background flames
-                        mainScreen.setBackgroundResource(R.drawable.realflames);
-                    }
-                }, 1000);
-            } else {
-                // soundeffect "click"
-                MediaPlayer mediaPlayer = MediaPlayer.create(ctx, R.raw.click);
-                mediaPlayer.start();
-
-
-                isLoaded = true;
-                isRolled = false;
-
-                // deactivate fire button
-                ((SocialRoulette) ctx).buttonFire.setAlpha(0.6f);
-                ((SocialRoulette) ctx).buttonFire.setEnabled(false);
-
-                // deactivate reload button
-                ((SocialRoulette) ctx).buttonReload.setAlpha(0.6f);
-                ((SocialRoulette) ctx).buttonReload.setEnabled(false);
-
-                // Mediaplayer stop
-                mediaPlayer.stop();
-
-                // show loaded chamber img
-                chamber.setImageResource(R.drawable.chamber);
-
-                // background flames
-                mainScreen.setBackgroundResource(R.drawable.realflames);
-            }
+        if (!isRolled) {
+            Misc.message(ctx, "Please roll the gun");
+            return;
         }
 
-    }
+        // Shoot
+        if (isRolled && rolledNumber == 6 || alwaysDie) {
+            // soundeffect "bang"
+            mediaPlayer = MediaPlayer.create(ctx, R.raw.bang);
+            mediaPlayer.start();
 
+            flasher.flash(1);
+
+            isLoaded = false;
+            isRolled = false;
+
+            // deactivate fire button
+            ((SocialRoulette) ctx).buttonFire.setAlpha(0.6f);
+            ((SocialRoulette) ctx).buttonFire.setEnabled(false);
+
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    // activate reload button
+                    ((SocialRoulette) ctx).buttonReload.setAlpha(1f);
+                    ((SocialRoulette) ctx).buttonReload.setEnabled(true);
+
+                    // show empty chamber img
+                    //System.out.println("Sunik ");
+                    chamber.setImageResource(R.drawable.chamber_empty);
+
+                    // background flames
+                    mainScreen.setBackgroundResource(R.drawable.realflames);
+                }
+            }, 1000);
+        } else {
+            // soundeffect "click"
+            MediaPlayer mediaPlayer = MediaPlayer.create(ctx, R.raw.click);
+            mediaPlayer.start();
+
+
+            isLoaded = true;
+            isRolled = false;
+
+            // deactivate fire button
+            ((SocialRoulette) ctx).buttonFire.setAlpha(0.6f);
+            ((SocialRoulette) ctx).buttonFire.setEnabled(false);
+
+            // deactivate reload button
+            ((SocialRoulette) ctx).buttonReload.setAlpha(0.6f);
+            ((SocialRoulette) ctx).buttonReload.setEnabled(false);
+
+            // Mediaplayer stop
+            mediaPlayer.stop();
+
+            // show loaded chamber img
+            chamber.setImageResource(R.drawable.chamber);
+
+            // background flames
+            mainScreen.setBackgroundResource(R.drawable.realflames);
+        }
+    }
 
 
     private void showRevolver() {
