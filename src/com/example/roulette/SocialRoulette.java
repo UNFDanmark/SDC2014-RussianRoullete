@@ -94,8 +94,8 @@ public class SocialRoulette extends Activity {
 
         parentScreen.setOnTouchListener(gestureListener);
 
-        intent = new Intent(getApplicationContext(), ShotScreen.class);
-        startActivity(intent);
+        //intent = new Intent(getApplicationContext(), ShotScreen.class);
+        //startActivity(intent);
     }
 
     class MyGestureDetector extends GestureDetector.SimpleOnGestureListener {
