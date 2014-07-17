@@ -20,7 +20,7 @@ public class Revolver extends Activity {
     private boolean isRolled = false;   // did the chamber roll?
     private int maxRollSpeed = 800;     // max roll speed for chamber
     private int minRollSpeed = 50;      // min roll speed for chamber
-    private boolean alwaysDie = true;
+    private boolean alwaysDie = false;
     private MediaPlayer mediaPlayer;
     private Flasher flasher;
     private Handler handler = new Handler();
@@ -113,9 +113,10 @@ public class Revolver extends Activity {
             }, 1000);
         } else {
             // soundeffect "click"
-            MediaPlayer mediaPlayer = MediaPlayer.create(ctx, R.raw.click);
+            mediaPlayer = MediaPlayer.create(ctx, R.raw.click);
             mediaPlayer.start();
 
+            stats.increment(3);
 
             isLoaded = true;
             isRolled = false;
@@ -123,9 +124,6 @@ public class Revolver extends Activity {
             // deactivate fire button
             ((SocialRoulette) ctx).buttonFire.setAlpha(0.6f);
             ((SocialRoulette) ctx).buttonFire.setEnabled(false);
-
-            // Mediaplayer stop
-            mediaPlayer.stop();
 
             // show loaded chamber img
             chamber.setImageResource(R.drawable.chamber);

@@ -91,7 +91,7 @@
                       android:layout_height="wrap_content"
                       android:textSize="20sp"
                       android:textStyle="bold"
-                      android:id="@+id/reloadsNumber"
+                      android:id="@+id/clickNumber"
                       android:textColor="#fff"
                       android:text="randomNr"/>
         </LinearLayout>
@@ -108,13 +108,12 @@
                       android:text="@string/reloadsString"
                       android:layout_weight="1"
                       android:textColor="#fff"/>
-            <TextView android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:textSize="20sp"
-                      android:textStyle="bold"
-                      android:id="@+id/reloadsNumber"
-                      android:textColor="#fff"
-                      android:text="randomNr"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="placeholder"
+                    android:id="@+id/reloadsNumber" android:textStyle="bold"/>
         </LinearLayout>
         <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent"
                       android:layout_height="wrap_content" android:id="@+id/linearLayout"

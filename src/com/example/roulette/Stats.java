@@ -15,6 +15,7 @@ public class Stats extends Activity {
     TextView reloadsNumber;
     TextView rollsNumber;
     TextView deathsNumber;
+    TextView clicksNumber;
 
     private StatSaver statSaver;
     public Context ctx;
@@ -42,5 +43,8 @@ public class Stats extends Activity {
 
         deathsNumber = (TextView) findViewById(R.id.deathsNumber);
         deathsNumber.setText(String.valueOf(statSaver.getInt(2)));
+
+        clicksNumber = (TextView) findViewById(R.id.clickNumber);
+        clicksNumber.setText(String.valueOf(statSaver.getInt(3)));
     }
 }

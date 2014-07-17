@@ -17,7 +17,8 @@ public class StatSaver{
     private String[] types = {
             "reloads",
             "rolls",
-            "deaths"
+            "deaths",
+            "clicks"
     };
 
     public StatSaver(Context ctx){
