@@ -5,6 +5,7 @@
     <string name="fire">Fire!</string>
     <string name="reload">Reload</string>
     <string name="info">information</string>
-    <string name="youdied">You Died \nGood luck explaining this message</string>
+    <string name="youdied">YOU DIED \nGOOD LUCK EXPLAINING THIS MESSAGE </string>
+    <string name="tryagain">Try Again</string>
 
 </resources>

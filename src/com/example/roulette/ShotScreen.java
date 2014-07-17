@@ -8,7 +8,7 @@ import android.widget.TextView;
 /**
  * Created by sdc on 7/16/14.
  */
-public class skudt extends Activity {
+public class ShotScreen extends Activity {
     Typeface tf;
     TextView youdied;
     @Override
