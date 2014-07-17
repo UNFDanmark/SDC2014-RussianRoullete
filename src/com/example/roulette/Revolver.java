@@ -1,8 +1,10 @@
 package com.example.roulette;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.view.ViewConfiguration;
 import android.view.animation.*;
 import android.widget.ImageView;
@@ -13,7 +15,6 @@ public class Revolver {
 
     private boolean isLoaded = false;   // revolver not loaded yet
     private int rolledNumber = 1;       // random number from 1 to 6
-    private int tries = 0;              // count tries to shoot
     private boolean isRolled = false;   // did the chamber roll?
     private int maxRollSpeed = 800;     // max roll speed for chamber
     private int minRollSpeed = 50;      // min roll speed for chamber
@@ -21,6 +22,7 @@ public class Revolver {
     private MediaPlayer mediaPlayer;
     private Flasher flasher;
     private Handler handler = new Handler();
+    private StatSaver stats;
 
     public Context ctx;
     public ImageView chamber;           // chamber of the gun. Can be: chamber (loaded), empty or barrel
@@ -31,32 +33,32 @@ public class Revolver {
         this.chamber = chamber;
         this.mainScreen = mainScreen;
         this.flasher = new Flasher(ctx);
+        this.stats = new StatSaver(ctx);
     }
 
-    public void reload() {              // reload function
-        if (!isLoaded) {
+    public void reload() {
 
-            // change to loaded chamber
-            chamber.setImageResource(R.drawable.chamber);
+        // change to loaded chamber
+        chamber.setImageResource(R.drawable.chamber);
+        isLoaded = true;
 
-            isLoaded = true;
+        // deactivate reloadbutton
+        ((SocialRoulette) ctx).buttonReload.setAlpha(0.6f);
+        ((SocialRoulette) ctx).buttonReload.setEnabled(false);
 
-            // deactivate reloadbutton
-            ((SocialRoulette) ctx).buttonReload.setAlpha(0.6f);
-            ((SocialRoulette) ctx).buttonReload.setEnabled(false);
+        // count reloads
+        stats.increment(0);
 
-        }
 
     }
 
     public void roll(long swipeSpeed, boolean swipeDirection) {     // death calculator
-        if (isRolled) {
-            return;
-        }
-
         isRolled = true;
         rolledNumber = (int) (Math.random() * 6 + 1);
         rollAnimation(swipeSpeed, swipeDirection);
+
+
+
     }
 
     public void fire() {
@@ -113,10 +115,6 @@ public class Revolver {
             ((SocialRoulette) ctx).buttonFire.setAlpha(0.6f);
             ((SocialRoulette) ctx).buttonFire.setEnabled(false);
 
-            // deactivate reload button
-            ((SocialRoulette) ctx).buttonReload.setAlpha(0.6f);
-            ((SocialRoulette) ctx).buttonReload.setEnabled(false);
-
             // Mediaplayer stop
             mediaPlayer.stop();
 
@@ -137,14 +135,13 @@ public class Revolver {
         mainScreen.setBackgroundColor(Color.parseColor("black"));
 
         // deactivate reloadbutton
-        ((SocialRoulette) ctx).buttonReload.setAlpha(0.6f);
+        ((SocialRoulette) ctx).buttonReload.setAlpha(0.3f);
         ((SocialRoulette) ctx).buttonReload.setEnabled(false);
 
         // activate firebutton
         ((SocialRoulette) ctx).buttonFire.setAlpha(1f);
         ((SocialRoulette) ctx).buttonFire.setEnabled(true);
     }
-
 
     /*
     Animate gun chamber.

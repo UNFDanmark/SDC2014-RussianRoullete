@@ -33,6 +33,8 @@ public class SocialRoulette extends Activity {
 
     // Other
     Intent intent;
+    StatSaver statSaver;
+
 
     private static final int SWIPE_MIN_DISTANCE = 200;
     private static final int SWIPE_MAX_OFF_PATH = 250;
@@ -63,9 +65,12 @@ public class SocialRoulette extends Activity {
 
         display.getSize(screenDimensions);
 
+        statSaver = new StatSaver(this);
+
         // deactivate firebutton on default
         buttonFire.setEnabled(false);
         buttonFire.setAlpha(0.6f);
+
         buttonFire.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
