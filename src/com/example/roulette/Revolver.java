@@ -3,6 +3,7 @@ package com.example.roulette;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Handler;
+import android.view.ViewConfiguration;
 import android.view.animation.*;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -16,31 +17,24 @@ public class Revolver {
     private boolean isRolled = false;   // did the chamber roll?
     private int maxRollSpeed = 800;     // max roll speed for chamber
     private int minRollSpeed = 50;      // min roll speed for chamber
-    private boolean alwaysDie = true;
     private MediaPlayer mediaPlayer;
-    private Flasher flasher;
-    private Handler handler = new Handler();
 
     public Context ctx;
-    public ImageView chamber;           // chamber of the gun. Can be: empty, loaded or chamber
+    public ImageView chamber;           // chamber of the gun. Can be: chamber (loaded), empty or barrel
     public LinearLayout mainScreen;     // used to change background image/-color
 
-    Revolver(Context ctx, ImageView chamber, LinearLayout mainScreen){
-        this.ctx = ctx;
-        this.chamber = chamber;
-        this.mainScreen = mainScreen;
-        this.flasher = new Flasher(ctx);
-    }
-
-    public void reload() {              // reload function
+    public void reload() {
         if (!isLoaded) {
 
             // change to loaded chamber
             chamber.setImageResource(R.drawable.chamber);
 
             isLoaded = true;
-        } else {
-            Misc.message(ctx, "Already loaded");
+
+            // deactivate reloadbutton
+            ((SocialRoulette) ctx).buttonReload.setAlpha(0.6f);
+            ((SocialRoulette) ctx).buttonReload.setEnabled(false);
+
         }
 
     }
@@ -50,12 +44,6 @@ public class Revolver {
             return;
         }
 
-        // soundeffect "rolling chamber"
-        mediaPlayer = MediaPlayer.create(ctx, R.raw.chamber);
-        mediaPlayer.start();
-
-
-
         isRolled = true;
         rolledNumber = (int) (Math.random() * 6 + 1);
         rollAnimation(swipeSpeed, swipeDirection);
@@ -63,52 +51,18 @@ public class Revolver {
 
     public void fire() {
 
-        if (!isLoaded) {
-            Misc.message(ctx, "Please load the gun");
-            return;
-        }
-
-        if (!isRolled) {
-            Misc.message(ctx, "Please roll the gun");
-            return;
-        }
-
         // Shoot
-        if (isRolled && rolledNumber == 6 || alwaysDie ) {
+        if (isRolled && rolledNumber == 6) {
+
+
+            // flash img?
+
             // soundeffect "bang"
             mediaPlayer = MediaPlayer.create(ctx,R.raw.bang);
             mediaPlayer.start();
 
-            flasher.flash(1);
 
             isLoaded = false;
-            isRolled = false;
-
-            // deactivate fire button
-            ((SocialRoulette) ctx).buttonFire.setAlpha(0.6f);
-            ((SocialRoulette) ctx).buttonFire.setEnabled(false);
-
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    // activate reload button
-                    ((SocialRoulette) ctx).buttonReload.setAlpha(1f);
-                    ((SocialRoulette) ctx).buttonReload.setEnabled(true);
-
-                    // show empty chamber img
-                    //System.out.println("Sunik ");
-                    chamber.setImageResource(R.drawable.chamber_empty);
-
-                    // background flames
-                    mainScreen.setBackgroundResource(R.drawable.realflames);
-                }
-            }, 1000);
-        } else {
-            // soundeffect "click"
-            MediaPlayer mediaPlayer = MediaPlayer.create(ctx,R.raw.click);
-            mediaPlayer.start();
-
-            isLoaded = true;
             isRolled = false;
 
             // deactivate fire button
@@ -121,6 +75,48 @@ public class Revolver {
             } catch (Exception e){
 
             }
+
+            // Mediaplayer stop
+            mediaPlayer.stop();
+
+            // activate reload button
+            ((SocialRoulette) ctx).buttonReload.setAlpha(1f);
+            ((SocialRoulette) ctx).buttonReload.setEnabled(true);
+
+            // show empty chamber img
+            chamber.setImageResource(R.drawable.chamber_empty);
+
+            // background flames
+            mainScreen.setBackgroundResource(R.drawable.realflames);
+
+        } else {
+
+            // soundeffect "click"
+            mediaPlayer = MediaPlayer.create(ctx,R.raw.click);
+            mediaPlayer.start();
+
+
+            isLoaded = true;
+            isRolled = false;
+
+            // deactivate fire button
+            ((SocialRoulette) ctx).buttonFire.setAlpha(0.6f);
+            ((SocialRoulette) ctx).buttonFire.setEnabled(false);
+
+            // deactivate reload button
+            ((SocialRoulette) ctx).buttonReload.setAlpha(0.6f);
+            ((SocialRoulette) ctx).buttonReload.setEnabled(false);
+
+
+            // sleep until sound is played
+            try {
+                Thread.sleep(1000);
+            } catch (Exception e){
+
+            }
+
+            // Mediaplayer stop
+            mediaPlayer.stop();
 
             // show loaded chamber img
             chamber.setImageResource(R.drawable.chamber);
@@ -142,6 +138,8 @@ public class Revolver {
         // black background
         mainScreen.setBackgroundColor(Color.parseColor("black"));
 
+
+        // TODO: Virker ikke
         // deactivate reloadbutton
         ((SocialRoulette) ctx).buttonReload.setAlpha(0.6f);
         ((SocialRoulette) ctx).buttonReload.setEnabled(false);
@@ -149,6 +147,7 @@ public class Revolver {
         // activate firebutton
         ((SocialRoulette) ctx).buttonFire.setAlpha(1f);
         ((SocialRoulette) ctx).buttonFire.setEnabled(true);
+
     }
 
 
@@ -177,22 +176,39 @@ public class Revolver {
         rollAnim.setInterpolator(new LinearInterpolator());
         rollAnim.setRepeatCount(Animation.INFINITE);
 
-        double swipePercentage = swipeSpeed / 16000.0;
+        double maxSwing = ViewConfiguration.get(ctx).getScaledMaximumFlingVelocity();
+        double swipePercentage = swipeSpeed / maxSwing;
         long calculatedDuration = (long) (maxRollSpeed - (maxRollSpeed - minRollSpeed) * swipePercentage);
-        rollAnim.setDuration(calculatedDuration);
+        //System.out.println(calculatedDuration);
+        rollAnim.setDuration(Math.abs(calculatedDuration));
 
         chamber.startAnimation(rollAnim);
 
         rollAnim.setAnimationListener(new Animation.AnimationListener() {
             int numRepeats = 0;
+            boolean stopOnNext = false;
 
             @Override
             public void onAnimationStart(Animation animation) {
+
+                // deactivate reloadbutton
+                ((SocialRoulette) ctx).buttonReload.setEnabled(false);
+
+                // soundeffect "rolling chamber"
+                mediaPlayer = MediaPlayer.create(ctx, R.raw.chamber);
+                mediaPlayer.start();
 
             }
 
             @Override
             public void onAnimationEnd(Animation animation) {
+
+                if (!isLoaded) {
+                    // activate reloadbutton
+                    ((SocialRoulette) ctx).buttonReload.setAlpha(1f);
+                    ((SocialRoulette) ctx).buttonReload.setEnabled(true);
+                }
+
                 mediaPlayer.stop();
             }
 
@@ -200,18 +216,26 @@ public class Revolver {
             public void onAnimationRepeat(Animation animation) {
                 animation.setDuration((long) (animation.getDuration() + (numRepeats * 50) * animation.getDuration() / 1500.0));
                 if (animation.getDuration() >= 1500) {
-                    hndl.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (isLoaded) {
+                    if(isLoaded) {
+                        hndl.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                isRolled = true;
+
+                                // stop animation
+                                chamber.clearAnimation();
+
                                 showRevolver();
-                            } else {
-                                isRolled = false;
                             }
-                            // stop animation
+                        }, (long) (500 + 500 * Math.random()));
+                    } else {
+                        stopOnNext = true;
+
+                        if(stopOnNext){
+                            isRolled = false;
                             chamber.clearAnimation();
                         }
-                    }, (long) (500 + 500 * Math.random()));
+                    }
                 }
 
                 numRepeats++;

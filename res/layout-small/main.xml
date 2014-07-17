@@ -21,7 +21,8 @@
 
             android:typeface="serif"
             android:textStyle="bold"
-            android:textIsSelectable="false" android:textSize="45sp"/>
+            android:textIsSelectable="false"
+            android:textSize="40sp"/>
 
     <LinearLayout
             android:orientation="vertical"
@@ -52,6 +53,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginBottom="20dp" />
+
         <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -66,11 +68,11 @@
                 android:paddingBottom="10dp"
                 android:paddingRight="20dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="5dp"
                 android:layout_marginBottom="20dp"
                 android:textColor="#fff"
-                android:layout_weight="2"
-                />
+                android:layout_weight="1"
+                android:singleLine="true"/>
 
     </LinearLayout>
 </LinearLayout>
