@@ -12,8 +12,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class SocialRoulette extends Activity {
-
-
     // Elements
     Button buttonFire;
     Button buttonReload;
@@ -55,10 +53,7 @@ public class SocialRoulette extends Activity {
         parentScreen = (LinearLayout) findViewById(R.id.parentScreen);
         title = (TextView) findViewById(R.id.title);
 
-        revolver = new Revolver();
-        revolver.ctx = this;
-        revolver.chamber = chamber;
-        revolver.mainScreen = parentScreen;
+        revolver = new Revolver(this, chamber, parentScreen);
 
         tf = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/russian.ttf");
         title.setTypeface(tf);
@@ -95,7 +90,7 @@ public class SocialRoulette extends Activity {
         parentScreen.setOnTouchListener(gestureListener);
 
         intent = new Intent(getApplicationContext(), ShotScreen.class);
-        startActivity(intent);
+        //startActivity(intent);
     }
 
     class MyGestureDetector extends GestureDetector.SimpleOnGestureListener {

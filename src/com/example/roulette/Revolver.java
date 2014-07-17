@@ -16,11 +16,21 @@ public class Revolver {
     private boolean isRolled = false;   // did the chamber roll?
     private int maxRollSpeed = 800;     // max roll speed for chamber
     private int minRollSpeed = 50;      // min roll speed for chamber
+    private boolean alwaysDie = true;
     private MediaPlayer mediaPlayer;
+    private Flasher flasher;
+    private Handler handler = new Handler();
 
     public Context ctx;
     public ImageView chamber;           // chamber of the gun. Can be: empty, loaded or chamber
     public LinearLayout mainScreen;     // used to change background image/-color
+
+    Revolver(Context ctx, ImageView chamber, LinearLayout mainScreen){
+        this.ctx = ctx;
+        this.chamber = chamber;
+        this.mainScreen = mainScreen;
+        this.flasher = new Flasher(ctx);
+    }
 
     public void reload() {              // reload function
         if (!isLoaded) {
@@ -64,14 +74,12 @@ public class Revolver {
         }
 
         // Shoot
-        if (isRolled && rolledNumber == 6) {
-
-
-            // flash img?
-
+        if (isRolled && rolledNumber == 6 || alwaysDie ) {
             // soundeffect "bang"
             mediaPlayer = MediaPlayer.create(ctx,R.raw.bang);
             mediaPlayer.start();
+
+            flasher.flash(1);
 
             isLoaded = false;
             isRolled = false;
@@ -80,24 +88,21 @@ public class Revolver {
             ((SocialRoulette) ctx).buttonFire.setAlpha(0.6f);
             ((SocialRoulette) ctx).buttonFire.setEnabled(false);
 
-            // sleep until sound is played
-            try {
-                Thread.sleep(1000);
-            } catch (Exception e){
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    // activate reload button
+                    ((SocialRoulette) ctx).buttonReload.setAlpha(1f);
+                    ((SocialRoulette) ctx).buttonReload.setEnabled(true);
 
-            }
+                    // show empty chamber img
+                    //System.out.println("Sunik ");
+                    chamber.setImageResource(R.drawable.chamber_empty);
 
-            // activate reload button
-            ((SocialRoulette) ctx).buttonReload.setAlpha(1f);
-            ((SocialRoulette) ctx).buttonReload.setEnabled(true);
-
-            // show empty chamber img
-            //System.out.println("Sunik ");
-            chamber.setImageResource(R.drawable.chamber_empty);
-
-            // background flames
-            mainScreen.setBackgroundResource(R.drawable.realflames);
-
+                    // background flames
+                    mainScreen.setBackgroundResource(R.drawable.realflames);
+                }
+            }, 1000);
         } else {
             // soundeffect "click"
             MediaPlayer mediaPlayer = MediaPlayer.create(ctx,R.raw.click);

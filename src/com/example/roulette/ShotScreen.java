@@ -5,12 +5,10 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.widget.TextView;
 
-/**
- * Created by sdc on 7/16/14.
- */
 public class ShotScreen extends Activity {
     Typeface tf;
     TextView youdied;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
