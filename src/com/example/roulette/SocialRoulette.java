@@ -1,6 +1,7 @@
 package com.example.roulette;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Point;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -31,6 +32,9 @@ public class SocialRoulette extends Activity {
 
     // Fonts
     Typeface tf;
+
+    // Other
+    Intent intent;
 
     private static final int SWIPE_MIN_DISTANCE = 200;
     private static final int SWIPE_MAX_OFF_PATH = 250;
@@ -89,6 +93,9 @@ public class SocialRoulette extends Activity {
         };
 
         parentScreen.setOnTouchListener(gestureListener);
+
+        intent = new Intent(getApplicationContext(), ShotScreen.class);
+        startActivity(intent);
     }
 
     class MyGestureDetector extends GestureDetector.SimpleOnGestureListener {
