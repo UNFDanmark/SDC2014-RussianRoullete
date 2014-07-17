@@ -23,6 +23,12 @@ public class Revolver {
     public ImageView chamber;           // chamber of the gun. Can be: chamber (loaded), empty or barrel
     public LinearLayout mainScreen;     // used to change background image/-color
 
+    public Revolver(Context ctx, ImageView chamber, LinearLayout mainScreen){
+        this.ctx = ctx;
+        this.chamber = chamber;
+        this.mainScreen = mainScreen;
+    }
+
     public void reload() {
         if (!isLoaded) {
 
