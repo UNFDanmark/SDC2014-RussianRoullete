@@ -13,7 +13,7 @@ public class Revolver {
 
     private boolean isLoaded = false;   // revolver not loaded yet
     private int rolledNumber = 1;       // random number from 1 to 6
-    private int tries = 0;              // count tries to shoot
+    private int tries = 0;              // count tries to shoot until died
     private boolean isRolled = false;   // did the chamber roll?
     private int maxRollSpeed = 800;     // max roll speed for chamber
     private int minRollSpeed = 50;      // min roll speed for chamber
@@ -60,9 +60,6 @@ public class Revolver {
         // Shoot
         if (isRolled && rolledNumber == 6) {
 
-
-            // flash img?
-
             // soundeffect "bang"
             mediaPlayer = MediaPlayer.create(ctx,R.raw.bang);
             mediaPlayer.start();
@@ -81,9 +78,6 @@ public class Revolver {
             } catch (Exception e){
 
             }
-
-            // Mediaplayer stop
-            mediaPlayer.stop();
 
             // activate reload button
             ((SocialRoulette) ctx).buttonReload.setAlpha(1f);
@@ -121,9 +115,6 @@ public class Revolver {
 
             }
 
-            // Mediaplayer stop
-            mediaPlayer.stop();
-
             // show loaded chamber img
             chamber.setImageResource(R.drawable.chamber);
 
@@ -143,12 +134,6 @@ public class Revolver {
 
         // black background
         mainScreen.setBackgroundColor(Color.parseColor("black"));
-
-
-        // TODO: Virker ikke
-        // deactivate reloadbutton
-        ((SocialRoulette) ctx).buttonReload.setAlpha(0.6f);
-        ((SocialRoulette) ctx).buttonReload.setEnabled(false);
 
         // activate firebutton
         ((SocialRoulette) ctx).buttonFire.setAlpha(1f);
