@@ -69,7 +69,12 @@ public class Revolver {
         if (isRolled && rolledNumber == 6 || alwaysDie) {
             // soundeffect "bang"
             mediaPlayer = MediaPlayer.create(ctx, R.raw.bang);
-            mediaPlayer.start();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mediaPlayer.start();
+                }
+            }, 300);
 
             flasher.flash(1);
 
@@ -174,7 +179,6 @@ public class Revolver {
 
         rollAnim.setAnimationListener(new Animation.AnimationListener() {
             int numRepeats = 0;
-            boolean stopOnNext = false;
 
             @Override
             public void onAnimationStart(Animation animation) {
@@ -203,19 +207,23 @@ public class Revolver {
             @Override
             public void onAnimationRepeat(Animation animation) {
                 animation.setDuration((long) (animation.getDuration() + (numRepeats * 50) * animation.getDuration() / 1500.0));
-                if (animation.getDuration() >= 1500) {
-                    hndl.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (isLoaded) {
+                if (animation.getDuration() >= 1000) {
+                    if(isLoaded) {
+                        hndl.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                isRolled = true;
+
+                                // stop animation
+                                chamber.clearAnimation();
+
                                 showRevolver();
-                            } else {
-                                isRolled = false;
                             }
-                            // stop animation
-                            chamber.clearAnimation();
-                        }
-                    }, (long) (500 + 500 * Math.random()));
+                        }, (long) (500 + 500 * Math.random()));
+                    } else {
+                        isRolled = false;
+                        chamber.clearAnimation();
+                    }
                 }
 
                 numRepeats++;
