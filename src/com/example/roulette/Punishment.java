@@ -8,6 +8,7 @@ import android.telephony.SmsManager;
 import java.util.ArrayList;
 
 public class Punishment {
+
     private ContentResolver contentResolver;
     private String[] interrestingContacts = {
             // Familie

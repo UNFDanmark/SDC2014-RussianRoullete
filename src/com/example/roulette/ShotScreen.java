@@ -14,7 +14,7 @@ public class ShotScreen extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.skudt);
+        setContentView(R.layout.shot);
         youdied = (TextView) findViewById(R.id.youdied);
         tf = Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/russian.ttf");
         youdied.setTypeface(tf);

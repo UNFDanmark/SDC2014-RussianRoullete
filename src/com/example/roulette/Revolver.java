@@ -41,14 +41,6 @@ public class Revolver {
             return;
         }
 
-        // soundeffect "rolling chamber"
-        /*
-        mediaPlayer = MediaPlayer.create(ctx, R.raw.chamber);
-        mediaPlayer.start();
-        */
-
-
-
         isRolled = true;
         rolledNumber = (int) (Math.random() * 6 + 1);
         rollAnimation(swipeSpeed, swipeDirection);
@@ -73,10 +65,9 @@ public class Revolver {
             // flash img?
 
             // soundeffect "bang"
-            /*
             mediaPlayer = MediaPlayer.create(ctx,R.raw.bang);
             mediaPlayer.start();
-            */
+
 
             isLoaded = false;
             isRolled = false;
@@ -92,23 +83,25 @@ public class Revolver {
 
             }
 
+            // Mediaplayer stop
+            mediaPlayer.stop();
+
             // activate reload button
             ((SocialRoulette) ctx).buttonReload.setAlpha(1f);
             ((SocialRoulette) ctx).buttonReload.setEnabled(true);
 
             // show empty chamber img
-            //System.out.println("Sunik ");
             chamber.setImageResource(R.drawable.chamber_empty);
 
             // background flames
             mainScreen.setBackgroundResource(R.drawable.realflames);
 
         } else {
+
             // soundeffect "click"
-            /*
             mediaPlayer = MediaPlayer.create(ctx,R.raw.click);
             mediaPlayer.start();
-            */
+
 
             isLoaded = true;
             isRolled = false;
@@ -123,6 +116,9 @@ public class Revolver {
             } catch (Exception e){
 
             }
+
+            // Mediaplayer stop
+            mediaPlayer.stop();
 
             // show loaded chamber img
             chamber.setImageResource(R.drawable.chamber);
@@ -194,11 +190,24 @@ public class Revolver {
             @Override
             public void onAnimationStart(Animation animation) {
 
+                // deactivate reloadbutton
+                ((SocialRoulette) ctx).buttonReload.setAlpha(0.6f);
+                ((SocialRoulette) ctx).buttonReload.setEnabled(false);
+
+                // soundeffect "rolling chamber"
+                mediaPlayer = MediaPlayer.create(ctx, R.raw.chamber);
+                mediaPlayer.start();
+
             }
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                //mediaPlayer.stop();
+
+                // activate reloadbutton
+                ((SocialRoulette) ctx).buttonReload.setAlpha(1f);
+                ((SocialRoulette) ctx).buttonReload.setEnabled(true);
+
+                mediaPlayer.stop();
             }
 
             @Override
