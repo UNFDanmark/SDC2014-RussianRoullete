@@ -3,7 +3,8 @@
               android:orientation="vertical"
               android:layout_width="fill_parent"
               android:layout_height="match_parent"
-              android:weightSum="1" android:id="@+id/parentScreen"
+              android:weightSum="1"
+              android:id="@+id/parentScreen"
               android:background="@drawable/realflames">
     <TextView
             android:layout_width="wrap_content"
@@ -27,7 +28,9 @@
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="fill_parent"
-            android:layout_height="0dp" android:layout_weight="1" android:id="@+id/mainScreen">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:id="@+id/mainScreen">
         <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent">
