@@ -72,9 +72,16 @@ public class Revolver extends Activity {
         }
 
         // Shoot
-        if (isRolled && rolledNumber == 6 || alwaysDie) {
+        if (false/*isRolled && rolledNumber == 6 || alwaysDie*/) {
             // soundeffect "bang"
             mediaPlayer = MediaPlayer.create(ctx, R.raw.bang);
+            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                public void onCompletion(MediaPlayer mp) {
+                    mp.release();
+
+                };
+            });
+
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -114,6 +121,12 @@ public class Revolver extends Activity {
         } else {
             // soundeffect "click"
             mediaPlayer = MediaPlayer.create(ctx, R.raw.click);
+            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                public void onCompletion(MediaPlayer mp) {
+                    mp.release();
+
+                };
+            });
             mediaPlayer.start();
             handler.postDelayed(new Runnable() {
                 @Override
@@ -198,6 +211,12 @@ public class Revolver extends Activity {
 
                 // soundeffect "rolling chamber"
                 mediaPlayer = MediaPlayer.create(ctx, R.raw.chamber);
+                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    public void onCompletion(MediaPlayer mp) {
+                        mp.release();
+
+                    };
+                });
                 mediaPlayer.start();
 
             }

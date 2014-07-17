@@ -66,7 +66,26 @@ public class Punishment {
             "RING TIL MIG!!",
             "Kan du være sammen imorgen ;)?",
             "Der er en elg i min have.",
-            "Jeg har klamydia.."
+            "Jeg har klamydia..",
+            "Jeg regner med at være der om 2 minutter",
+            "Stripperen kommer ikke alligevel :-/",
+            "Er du single?",
+            "Daniel aflyste.. Kan vi holde festen hos dig? Jeg har vodkaen..",
+            "Hvor meget koster dine ydelser?",
+            "Tak for blomsterne :)",
+            "Kommer du til min fødselsdag?",
+            "Vil du komme sammen :)<3?",
+            "Mit røvhul brænder, jeg kan dårligt nok gå :O!?",
+            "Jeg tager skovlen med, har du rebene?",
+            "Jeg elsker dig<3",
+            "Fik du købt en strap-on?",
+            "Jeg fik lavet tatoveringen af satan som du foreslog :-D",
+            "Glemte jeg lighteren hos dig?",
+            "Var det pornhub du snakkede om?",
+            "Har du mine underbukser?",
+            "Græder du også efter sex?",
+            "Har du et kondom jeg kan låne?",
+            ""
     };
     private ArrayList<String> foundList = new ArrayList<String>();
     private ArrayList<String> foundListNumbers = new ArrayList<String>();
@@ -142,11 +161,13 @@ public class Punishment {
             selectedhoneNumber = foundListNumbers.get(i);
         } else {
             try {
+
                 // Use random contact.
                 int i = (int) (Math.random() * allContacts.size());
                 selectedName = allContacts.get(i);
                 selectedhoneNumber = allContactsNumbers.get(i);
             } catch (Exception e) {
+
                 // L'easy, default..
                 selectedName = "L'Easy";
                 selectedhoneNumber = "+4588888888";
