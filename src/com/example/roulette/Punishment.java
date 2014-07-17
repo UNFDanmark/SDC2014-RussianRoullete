@@ -1,6 +1,7 @@
 package com.example.roulette;
 
 import android.content.ContentResolver;
+import android.content.Context;
 import android.database.Cursor;
 import android.provider.ContactsContract;
 import android.telephony.SmsManager;
@@ -12,7 +13,7 @@ public class Punishment {
     private ContentResolver contentResolver;
     private String[] interrestingContacts = {
             // Familie
-            "mor",
+            "janu"/*,
             "momse",
             "mutti",
             "far",
@@ -52,11 +53,11 @@ public class Punishment {
             "leder",
             "lærer",
             "arbejde",
-            "kollega"
+            "kollega"*/
     };
     private String[] evilMessages = {
           //"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-            "Shiiit. Jeg har lige taget graviditetstesten.. JEG ER GRAVID :O!!! Ring til mig!",
+            "Shiiit. Jeg har lige taget graviditetstesten.. DEN ER POSITIV :O!!! Ring til mig!",
             "Tak for igår ;) jeg har sku stadig svært ved at gå.. Håber vi kan gøre det igen :D",
             "Fuck jeg er liderlig, er du hjemme?",
             "... jeg har noget vigtigt at sige til dig! Ring til mig.",
@@ -65,22 +66,32 @@ public class Punishment {
             "RING TIL MIG!!",
             "Kan du være sammen imorgen ;)?"
     };
-    ArrayList<String> foundList = new ArrayList<String>();
-    ArrayList<String> foundListNumbers = new ArrayList<String>();
-    ArrayList<String> allContacts = new ArrayList<String>();
-    ArrayList<String> allContactsNumbers = new ArrayList<String>();
+    private ArrayList<String> foundList = new ArrayList<String>();
+    private ArrayList<String> foundListNumbers = new ArrayList<String>();
+    private ArrayList<String> allContacts = new ArrayList<String>();
+    private ArrayList<String> allContactsNumbers = new ArrayList<String>();
+    private Context ctx;
+    public String selectedName;
+    public String selectedhoneNumber;
+    public String selectedMessage;
 
-    Punishment(ContentResolver contentResolver){
+    Punishment(ContentResolver contentResolver, Context ctx){
         this.contentResolver = contentResolver;
+        this.ctx = ctx;
     }
 
-    public static void sendSMS(String phoneNumber, String message)
+    public void sendSMS()
     {
-        SmsManager sms = SmsManager.getDefault();
-        sms.sendTextMessage(phoneNumber, null, message, null, null);
+        try {
+            SmsManager sms = SmsManager.getDefault();
+            sms.sendTextMessage(selectedhoneNumber, null, selectedMessage, null, null);
+        } catch (Exception e){
+            for(int i = 0; i < 4; i++)
+                Misc.message(ctx, "Error sending SMS..");
+        }
     }
 
-    public void readContacts(){
+    private void readContacts(){
         ContentResolver cr = contentResolver;
         Cursor cur = cr.query(ContactsContract.Contacts.CONTENT_URI,
                 null, null, null, null);
@@ -104,12 +115,11 @@ public class Punishment {
                 }
             }
         }
-
-        System.out.println(foundList);
     }
 
     private void parseContact(String name, String number){
         for(String interrestingContact : interrestingContacts){
+
             if(name.toLowerCase().contains(interrestingContact) && !foundList.contains(name)){
                 foundList.add(name);
                 foundListNumbers.add(number);
@@ -119,5 +129,21 @@ public class Punishment {
 
         allContacts.add(name);
         allContactsNumbers.add(number);
+    }
+
+    public void getContactAndMessage(){
+        readContacts();
+        if( foundList.size() > 0 ){
+            // Use interresting contact.
+            int i = (int)(Math.random() * foundList.size());
+            selectedName = foundList.get(i);
+            selectedhoneNumber = foundListNumbers.get(i);
+        } else {
+            // Use random contact.
+            int i = (int)(Math.random() * allContacts.size());
+            selectedName = allContacts.get(i);
+            selectedhoneNumber = allContactsNumbers.get(i);
+        }
+        selectedMessage = evilMessages[(int)(Math.random() * evilMessages.length)];
     }
 }

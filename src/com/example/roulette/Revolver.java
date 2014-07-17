@@ -168,9 +168,11 @@ public class Revolver {
         rollAnim.setInterpolator(new LinearInterpolator());
         rollAnim.setRepeatCount(Animation.INFINITE);
 
-        double swipePercentage = swipeSpeed / 16000.0;
+        double maxSwing = ViewConfiguration.get(ctx).getScaledMaximumFlingVelocity();
+        double swipePercentage = swipeSpeed / maxSwing;
         long calculatedDuration = (long) (maxRollSpeed - (maxRollSpeed - minRollSpeed) * swipePercentage);
-        rollAnim.setDuration(calculatedDuration);
+
+        rollAnim.setDuration(Math.abs(calculatedDuration));
 
         chamber.startAnimation(rollAnim);
 

@@ -19,22 +19,40 @@
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
-            android:layout_height="46dp" android:layout_gravity="bottom" android:layout_weight="1">
+            android:layout_height="0dp" android:layout_weight="0.94" android:padding="40dp">
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/textViewMessage" android:text="To:\nMessage:"/>
     </LinearLayout>
-    <Button
-            android:layout_width="128dp"
-            android:layout_height="wrap_content"
-            android:text="@string/tryagain"
-            android:typeface="serif"
-            android:textStyle="bold"
-            android:id="@+id/button"
-            android:layout_gravity="center_horizontal"
-
-
-            android:layout_marginBottom="10dp"/>
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content" android:gravity="center">
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/button2" android:text="@string/stats"
+                    android:typeface="serif"
+                    android:textStyle="bold"/>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tryagain"
+                    android:typeface="serif"
+                    android:textStyle="bold"
+                    android:id="@+id/button"
+                    />
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

@@ -7,5 +7,6 @@
     <string name="info">information</string>
     <string name="youdied">YOU DIED \nGOOD LUCK EXPLAINING THIS MESSAGE </string>
     <string name="tryagain">Try Again</string>
+    <string name="stats">Stats</string>
 
 </resources>

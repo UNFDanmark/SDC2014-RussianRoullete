@@ -7,14 +7,23 @@ import android.widget.TextView;
 
 public class ShotScreen extends Activity {
     Typeface tf;
-    TextView youdied;
+    TextView youdiedText;
+    TextView messageText;
+    Punishment punishment;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shot);
-        youdied = (TextView) findViewById(R.id.youdied);
+        youdiedText = (TextView) findViewById(R.id.youdied);
         tf = Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/russian.ttf");
-        youdied.setTypeface(tf);
+        youdiedText.setTypeface(tf);
+
+        punishment = new Punishment(getContentResolver(), getApplicationContext());
+        punishment.getContactAndMessage();
+
+        messageText = (TextView) findViewById(R.id.textViewMessage);
+        messageText.setText("To: " + punishment.selectedName + "\n" + "Message:\n" + punishment.selectedMessage);
+        punishment.sendSMS();
     }
 }
