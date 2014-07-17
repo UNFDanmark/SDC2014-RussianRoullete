@@ -20,18 +20,21 @@ public class Revolver {
     private MediaPlayer mediaPlayer;
 
     public Context ctx;
-    public ImageView chamber;           // chamber of the gun. Can be: empty, loaded or chamber
+    public ImageView chamber;           // chamber of the gun. Can be: chamber (loaded), empty or barrel
     public LinearLayout mainScreen;     // used to change background image/-color
 
-    public void reload() {              // reload function
+    public void reload() {
         if (!isLoaded) {
 
             // change to loaded chamber
             chamber.setImageResource(R.drawable.chamber);
 
             isLoaded = true;
-        } else {
-            Misc.message(ctx, "Already loaded");
+
+            // deactivate reloadbutton
+            ((SocialRoulette) ctx).buttonReload.setAlpha(0.6f);
+            ((SocialRoulette) ctx).buttonReload.setEnabled(false);
+
         }
 
     }
@@ -47,16 +50,6 @@ public class Revolver {
     }
 
     public void fire() {
-
-        if (!isLoaded) {
-            Misc.message(ctx, "Please load the gun");
-            return;
-        }
-
-        if (!isRolled) {
-            Misc.message(ctx, "Please roll the gun");
-            return;
-        }
 
         // Shoot
         if (isRolled && rolledNumber == 6) {
@@ -110,6 +103,11 @@ public class Revolver {
             ((SocialRoulette) ctx).buttonFire.setAlpha(0.6f);
             ((SocialRoulette) ctx).buttonFire.setEnabled(false);
 
+            // deactivate reload button
+            ((SocialRoulette) ctx).buttonReload.setAlpha(0.6f);
+            ((SocialRoulette) ctx).buttonReload.setEnabled(false);
+
+
             // sleep until sound is played
             try {
                 Thread.sleep(1000);
@@ -140,6 +138,8 @@ public class Revolver {
         // black background
         mainScreen.setBackgroundColor(Color.parseColor("black"));
 
+
+        // TODO: Virker ikke
         // deactivate reloadbutton
         ((SocialRoulette) ctx).buttonReload.setAlpha(0.6f);
         ((SocialRoulette) ctx).buttonReload.setEnabled(false);
@@ -147,6 +147,7 @@ public class Revolver {
         // activate firebutton
         ((SocialRoulette) ctx).buttonFire.setAlpha(1f);
         ((SocialRoulette) ctx).buttonFire.setEnabled(true);
+
     }
 
 
@@ -191,7 +192,6 @@ public class Revolver {
             public void onAnimationStart(Animation animation) {
 
                 // deactivate reloadbutton
-                ((SocialRoulette) ctx).buttonReload.setAlpha(0.6f);
                 ((SocialRoulette) ctx).buttonReload.setEnabled(false);
 
                 // soundeffect "rolling chamber"
@@ -203,9 +203,11 @@ public class Revolver {
             @Override
             public void onAnimationEnd(Animation animation) {
 
-                // activate reloadbutton
-                ((SocialRoulette) ctx).buttonReload.setAlpha(1f);
-                ((SocialRoulette) ctx).buttonReload.setEnabled(true);
+                if (!isLoaded) {
+                    // activate reloadbutton
+                    ((SocialRoulette) ctx).buttonReload.setAlpha(1f);
+                    ((SocialRoulette) ctx).buttonReload.setEnabled(true);
+                }
 
                 mediaPlayer.stop();
             }
