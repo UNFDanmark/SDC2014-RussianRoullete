@@ -145,7 +145,7 @@ public class Punishment {
                 selectedName = allContacts.get(i);
                 selectedhoneNumber = allContactsNumbers.get(i);
             } catch (Exception e) {
-                // Magnuses mor, default..
+                // L'easy, default..
                 selectedName = "L'Easy";
                 selectedhoneNumber = "+4588888888";
             }
