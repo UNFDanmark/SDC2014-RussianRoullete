@@ -3,6 +3,7 @@ package com.example.roulette;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Handler;
+import android.view.ViewConfiguration;
 import android.view.animation.*;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -41,8 +42,10 @@ public class Revolver {
         }
 
         // soundeffect "rolling chamber"
+        /*
         mediaPlayer = MediaPlayer.create(ctx, R.raw.chamber);
         mediaPlayer.start();
+        */
 
 
 
@@ -70,8 +73,10 @@ public class Revolver {
             // flash img?
 
             // soundeffect "bang"
+            /*
             mediaPlayer = MediaPlayer.create(ctx,R.raw.bang);
             mediaPlayer.start();
+            */
 
             isLoaded = false;
             isRolled = false;
@@ -100,8 +105,10 @@ public class Revolver {
 
         } else {
             // soundeffect "click"
-            MediaPlayer mediaPlayer = MediaPlayer.create(ctx,R.raw.click);
+            /*
+            mediaPlayer = MediaPlayer.create(ctx,R.raw.click);
             mediaPlayer.start();
+            */
 
             isLoaded = true;
             isRolled = false;
@@ -172,14 +179,17 @@ public class Revolver {
         rollAnim.setInterpolator(new LinearInterpolator());
         rollAnim.setRepeatCount(Animation.INFINITE);
 
-        double swipePercentage = swipeSpeed / 16000.0;
+        double maxSwing = ViewConfiguration.get(ctx).getScaledMaximumFlingVelocity();
+        double swipePercentage = swipeSpeed / maxSwing;
         long calculatedDuration = (long) (maxRollSpeed - (maxRollSpeed - minRollSpeed) * swipePercentage);
-        rollAnim.setDuration(calculatedDuration);
+        //System.out.println(calculatedDuration);
+        rollAnim.setDuration(Math.abs(calculatedDuration));
 
         chamber.startAnimation(rollAnim);
 
         rollAnim.setAnimationListener(new Animation.AnimationListener() {
             int numRepeats = 0;
+            boolean stopOnNext = false;
 
             @Override
             public void onAnimationStart(Animation animation) {
@@ -188,25 +198,33 @@ public class Revolver {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                mediaPlayer.stop();
+                //mediaPlayer.stop();
             }
 
             @Override
             public void onAnimationRepeat(Animation animation) {
                 animation.setDuration((long) (animation.getDuration() + (numRepeats * 50) * animation.getDuration() / 1500.0));
                 if (animation.getDuration() >= 1500) {
-                    hndl.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (isLoaded) {
+                    if(isLoaded) {
+                        hndl.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                isRolled = true;
+
+                                // stop animation
+                                chamber.clearAnimation();
+
                                 showRevolver();
-                            } else {
-                                isRolled = false;
                             }
-                            // stop animation
+                        }, (long) (500 + 500 * Math.random()));
+                    } else {
+                        stopOnNext = true;
+
+                        if(stopOnNext){
+                            isRolled = false;
                             chamber.clearAnimation();
                         }
-                    }, (long) (500 + 500 * Math.random()));
+                    }
                 }
 
                 numRepeats++;
