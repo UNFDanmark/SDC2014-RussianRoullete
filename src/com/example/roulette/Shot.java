@@ -3,6 +3,7 @@ package com.example.roulette;
 import android.app.Activity;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 import com.example.roulette.Punishment;
 import com.example.roulette.R;
@@ -12,6 +13,8 @@ public class Shot extends Activity {
     TextView youdiedText;
     TextView messageText;
     Punishment punishment;
+    Button buttonTryAgain;
+    Button buttonStats;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

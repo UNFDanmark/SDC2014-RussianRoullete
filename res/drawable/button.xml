@@ -4,27 +4,43 @@
     <!-- button pressed styles -->
     <item android:state_pressed="true" >
         <shape android:shape="rectangle"  >
-            <corners android:radius="4dip" />
-            <stroke android:width="1dip" android:color="#000" />
-            <gradient android:angle="-90" android:startColor="#000" android:endColor="#333"  />
+            <corners android:radius="3dip" />
+
+            <stroke android:width="1dip"
+                    android:color="#000" />
+
+            <gradient android:angle="-90"
+                      android:startColor="#000"
+                      android:endColor="#333"  />
+
         </shape>
     </item>
 
     <!-- button focus styles -->
     <item android:state_focused="true">
         <shape android:shape="rectangle"  >
-            <corners android:radius="4dip" />
-            <stroke android:width="1dip" android:color="#fff" />
+            <corners android:radius="3dip" />
+
+            <stroke android:width="1dip"
+                    android:color="#fff" />
+
             <solid android:color="#000"/>
+
         </shape>
     </item>
 
     <!-- general styles -->
     <item >
         <shape>
-            <corners android:radius="4dip" />
-            <stroke android:width="1dip" android:color="#000" />
-            <gradient android:angle="-90" android:startColor="#333" android:endColor="#000" />
+            <corners android:radius="3dip" />
+
+            <stroke android:width="1dip"
+                    android:color="#000" />
+
+            <gradient android:angle="-90"
+                      android:startColor="#333"
+                      android:endColor="#000" />
+
         </shape>
     </item>
 </selector>

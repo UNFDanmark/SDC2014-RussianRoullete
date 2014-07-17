@@ -147,7 +147,7 @@ public class Punishment {
             } catch (Exception e) {
                 // L'easy, default..
                 selectedName = "L'Easy";
-                selectedhoneNumber = "+4588888888";
+                //selectedhoneNumber = "+4588888888";
             }
         }
         selectedMessage = evilMessages[(int)(Math.random() * evilMessages.length)];

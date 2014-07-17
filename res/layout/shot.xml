@@ -3,56 +3,93 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent" android:weightSum="1" android:textAlignment="center"
-        >
+              android:layout_height="match_parent"
+              android:weightSum="1">
 
+    <TextView
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/youdied"
+            android:id="@+id/youdied"
+            android:layout_gravity="center_horizontal"
+            android:textSize="40sp"
+            android:textColor="#ffc40008"
+            android:textStyle="bold"
+            android:typeface="serif"
+            />
     <ImageView
             android:layout_width="180dp"
             android:layout_height="172dp"
-            android:id="@+id/imageView"
-            android:background="@drawable/skull" android:layout_gravity="center_horizontal"/>
+            android:id="@+id/skullImg"
+            android:background="@drawable/skull"
+            android:layout_gravity="center_horizontal"/>
     <TextView
+            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center" android:text="@string/youdied" android:layout_gravity="center"
-            android:textSize="25sp" android:id="@+id/youdied"/>
+            android:gravity="center"
+            android:text="@string/goodluck"
+            android:layout_gravity="center"
+            android:textSize="25sp"
+            android:id="@+id/goodluck"
+            android:typeface="serif"/>
+
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
-            android:layout_height="0dp" android:layout_weight="0.94" android:padding="40dp">
+            android:layout_height="0dp"
+            android:layout_weight="0.94"
+            android:layout_marginTop="5dp"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp">
+
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/textViewMessage" android:text="To:\nMessage:"/>
+                android:id="@+id/textViewMessage"
+                android:text="To:\nMessage:"
+                android:layout_gravity="center_vertical"/>
+
     </LinearLayout>
     <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:gravity="center">
-        <LinearLayout
-                android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center">
+        <Button
+                android:id="@+id/buttonStats"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-            <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/button2" android:text="@string/stats"
-                    android:typeface="serif"
-                    android:textStyle="bold"/>
-        </LinearLayout>
-        <LinearLayout
-                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingLeft="20dp"
+                android:paddingBottom="10dp"
+                android:paddingRight="20dp"
+                android:text="@string/stats"
+                android:typeface="serif"
+                android:textStyle="bold"
+                android:textColor="#111"
+                android:background="@drawable/buttonwhite"
+                android:layout_marginRight="10dp"
+                />
+        <Button
+                android:id="@+id/buttonTryAgain"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-            <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/tryagain"
-                    android:typeface="serif"
-                    android:textStyle="bold"
-                    android:id="@+id/button"
-                    />
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingLeft="20dp"
+                android:paddingBottom="10dp"
+                android:paddingRight="20dp"
+                android:text="@string/tryagain"
+                android:typeface="serif"
+                android:textStyle="bold"
+                android:textColor="#111"
+
+                android:background="@drawable/buttonwhite"
+                android:layout_marginLeft="10dp"
+                />
     </LinearLayout>
 </LinearLayout>

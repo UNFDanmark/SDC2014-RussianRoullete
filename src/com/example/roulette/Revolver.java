@@ -20,7 +20,7 @@ public class Revolver extends Activity {
     private boolean isRolled = false;   // did the chamber roll?
     private int maxRollSpeed = 800;     // max roll speed for chamber
     private int minRollSpeed = 50;      // min roll speed for chamber
-    private boolean alwaysDie = false;
+    private boolean alwaysDie = true;
     private MediaPlayer mediaPlayer;
     private Flasher flasher;
     private Handler handler = new Handler();

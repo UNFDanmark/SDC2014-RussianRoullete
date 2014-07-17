@@ -5,9 +5,14 @@
     <string name="fire">Fire!</string>
     <string name="reload">Reload</string>
     <string name="info">information</string>
-    <string name="youdied">YOU DIED \nGOOD LUCK EXPLAINING THIS MESSAGE </string>
+    <string name="youdied">YOU DIED</string>
+    <string name="goodluck">GOOD LUCK EXPLAINING THIS MESSAGE </string>
     <string name="tryagain">Try Again</string>
     <string name="stats">Stats</string>
     <string name="statstitle">- STATS -</string>
+    <string name="deathsString">Deaths:</string>
+    <string name="rollsString">Rolls:</string>
+    <string name="clicksString">Clicks:</string>
     <string name="reloadsString">Reloads:</string>
+    <string name="back">Back</string>
 </resources>
