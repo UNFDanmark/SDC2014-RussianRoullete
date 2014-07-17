@@ -13,7 +13,10 @@ public class Stats extends Activity {
     TextView titleStats;
     TextView statstitle;
     TextView reloadsNumber;
-    private StatSaver stats;
+    TextView rollsNumber;
+    TextView deathsNumber;
+
+    private StatSaver statSaver;
     public Context ctx;
 
     @Override
@@ -23,6 +26,7 @@ public class Stats extends Activity {
         // russian font
         tf = Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/russian.ttf");
 
+        statSaver = new StatSaver(getApplicationContext());
 
         statstitle = (TextView) findViewById(R.id.statstitle);
         statstitle.setTypeface(tf);
@@ -31,6 +35,12 @@ public class Stats extends Activity {
         titleStats.setTypeface(tf);
 
         reloadsNumber = (TextView) findViewById(R.id.reloadsNumber);
-//        reloadsNumber.setText(stats.getInt(0));
+        reloadsNumber.setText(String.valueOf(statSaver.getInt(0)));
+
+        rollsNumber = (TextView) findViewById(R.id.rollsNumber);
+        rollsNumber.setText(String.valueOf(statSaver.getInt(1)));
+
+        deathsNumber = (TextView) findViewById(R.id.deathsNumber);
+        deathsNumber.setText(String.valueOf(statSaver.getInt(2)));
     }
 }

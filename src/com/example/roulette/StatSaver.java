@@ -29,6 +29,7 @@ public class StatSaver{
         String type = types[typeIndex];
         int oldValue = getInt(typeIndex);
         editor.putInt(type, oldValue + 1);
+        System.out.println(oldValue + 1);
         editor.commit();
     }
 

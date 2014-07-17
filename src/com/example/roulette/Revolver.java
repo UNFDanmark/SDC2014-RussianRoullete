@@ -20,7 +20,7 @@ public class Revolver extends Activity {
     private boolean isRolled = false;   // did the chamber roll?
     private int maxRollSpeed = 800;     // max roll speed for chamber
     private int minRollSpeed = 50;      // min roll speed for chamber
-    private boolean alwaysDie = false;
+    private boolean alwaysDie = true;
     private MediaPlayer mediaPlayer;
     private Flasher flasher;
     private Handler handler = new Handler();
@@ -56,12 +56,13 @@ public class Revolver extends Activity {
     }
 
     public void roll(long swipeSpeed, boolean swipeDirection) {     // death calculator
+        if(isRolled)
+            return;
+
         isRolled = true;
         rolledNumber = (int) (Math.random() * 6 + 1);
         rollAnimation(swipeSpeed, swipeDirection);
-
-
-
+        stats.increment(1);
     }
 
     public void fire() {
@@ -89,6 +90,8 @@ public class Revolver extends Activity {
             // deactivate fire button
             ((SocialRoulette) ctx).buttonFire.setAlpha(0.6f);
             ((SocialRoulette) ctx).buttonFire.setEnabled(false);
+
+            stats.increment(2);
 
             handler.postDelayed(new Runnable() {
                 Intent intent = new Intent(ctx, Shot.class);
