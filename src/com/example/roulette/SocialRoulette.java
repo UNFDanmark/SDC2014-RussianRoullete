@@ -94,7 +94,7 @@ public class SocialRoulette extends Activity {
 
         parentScreen.setOnTouchListener(gestureListener);
 
-        intent = new Intent(getApplicationContext(), Shot.class);
+        intent = new Intent(getApplicationContext(), Stats.class);
         startActivity(intent);
     }
 
