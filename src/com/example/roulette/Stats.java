@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import com.example.roulette.R;
 import com.example.roulette.StatSaver;
@@ -16,6 +18,8 @@ public class Stats extends Activity {
     TextView rollsNumber;
     TextView deathsNumber;
     TextView clicksNumber;
+
+    Button backButton;
 
     private StatSaver statSaver;
     public Context ctx;
@@ -46,5 +50,14 @@ public class Stats extends Activity {
 
         clicksNumber = (TextView) findViewById(R.id.clickNumber);
         clicksNumber.setText(String.valueOf(statSaver.getInt(3)));
+
+        backButton = (Button) findViewById(R.id.backButton);
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 }

@@ -1,8 +1,10 @@
 package com.example.roulette;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import com.example.roulette.Punishment;
@@ -15,6 +17,7 @@ public class Shot extends Activity {
     Punishment punishment;
     Button buttonTryAgain;
     Button buttonStats;
+    Intent intent;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -30,5 +33,22 @@ public class Shot extends Activity {
         messageText = (TextView) findViewById(R.id.textViewMessage);
         messageText.setText("To: " + punishment.selectedName + "\n" + "Message:\n" + punishment.selectedMessage);
         punishment.sendSMS();
+
+        buttonTryAgain = (Button) findViewById(R.id.buttonTryAgain);
+        buttonTryAgain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        buttonStats = (Button) findViewById(R.id.buttonStats);
+        intent = new Intent(getApplicationContext(), Stats.class);
+        buttonStats.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(intent);
+            }
+        });
     }
 }
