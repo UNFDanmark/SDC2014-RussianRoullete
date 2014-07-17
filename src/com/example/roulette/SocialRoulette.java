@@ -77,6 +77,7 @@ public class SocialRoulette extends Activity {
                 revolver.fire();
             }
         });
+
         buttonReload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,9 +94,6 @@ public class SocialRoulette extends Activity {
         };
 
         parentScreen.setOnTouchListener(gestureListener);
-
-        intent = new Intent(getApplicationContext(), Shot.class);
-        startActivity(intent);
     }
 
     class MyGestureDetector extends GestureDetector.SimpleOnGestureListener {
@@ -133,5 +131,4 @@ public class SocialRoulette extends Activity {
             return true;
         }
     }
-
 }

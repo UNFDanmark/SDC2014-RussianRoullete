@@ -1,6 +1,8 @@
 package com.example.roulette;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Handler;
@@ -11,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.media.MediaPlayer;
 
-public class Revolver {
+public class Revolver extends Activity {
 
     private boolean isLoaded = false;   // revolver not loaded yet
     private int rolledNumber = 1;       // random number from 1 to 6
@@ -23,6 +25,7 @@ public class Revolver {
     private Flasher flasher;
     private Handler handler = new Handler();
     private StatSaver stats;
+    private Intent intent;
 
     public Context ctx;
     public ImageView chamber;           // chamber of the gun. Can be: chamber (loaded), empty or barrel
@@ -88,6 +91,8 @@ public class Revolver {
             ((SocialRoulette) ctx).buttonFire.setEnabled(false);
 
             handler.postDelayed(new Runnable() {
+                Intent intent = new Intent(ctx, Shot.class);
+
                 @Override
                 public void run() {
                     // activate reload button
@@ -95,11 +100,12 @@ public class Revolver {
                     ((SocialRoulette) ctx).buttonReload.setEnabled(true);
 
                     // show empty chamber img
-                    //System.out.println("Sunik ");
                     chamber.setImageResource(R.drawable.chamber_empty);
 
                     // background flames
                     mainScreen.setBackgroundResource(R.drawable.realflames);
+
+                    ((Activity) ctx).startActivity(intent);
                 }
             }, 1000);
         } else {
