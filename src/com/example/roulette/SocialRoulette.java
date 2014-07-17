@@ -67,9 +67,6 @@ public class SocialRoulette extends Activity {
 
         statSaver = new StatSaver(this);
 
-        intent = new Intent(getApplicationContext(), Stats.class);
-        startActivity(intent);
-
         // deactivate firebutton on default
         buttonFire.setEnabled(false);
         buttonFire.setAlpha(0.6f);

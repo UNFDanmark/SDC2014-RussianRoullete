@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@drawable/realflames">
+
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/title"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="5dp"
+            android:paddingTop="20dp"
+            android:textIsSelectable="false"
+            android:textSize="55sp"
+            android:gravity="center"
+            android:id="@+id/titleStats"/>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:textAppearance="?android:attr/textAppearanceLarge"
+                  android:orientation="vertical"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="50dp"
+                  android:layout_marginTop="20dp"
+                  android:layout_marginRight="50dp"
+                  android:layout_marginBottom="5dp"
+                  android:paddingTop="5dp"
+                  android:paddingRight="30dp"
+                  android:paddingBottom="20dp"
+                  android:paddingLeft="30dp"
+                  android:background="#80000000">
+
+        <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/statstitle"
+                android:id="@+id/statstitle"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="15dp"
+                android:textIsSelectable="false"
+                android:textSize="55sp"
+                android:gravity="center"
+                android:typeface="serif"
+                />
+
+
+        <LinearLayout android:orientation="horizontal"
+                      android:layout_width="fill_parent"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/reloadsSection"
+                      android:layout_marginBottom="20dp">
+            <TextView android:layout_gravity="center_horizontal"
+                      android:textSize="30sp"
+                      android:singleLine="true"
+                      android:layout_width="0dp"
+                      android:layout_height="wrap_content"
+                      android:text="@string/deathsString"
+                      android:layout_weight="1"
+                      android:textColor="#fff"/>
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:textSize="30sp"
+                      android:textStyle="bold"
+                      android:id="@+id/deathsNumber"
+                      android:textColor="#fff"
+                      android:text="randomNr"/>
+        </LinearLayout>
+        <LinearLayout android:orientation="horizontal"
+                      android:layout_width="fill_parent"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/rollsSection"
+                      android:layout_marginBottom="20dp">
+            <TextView android:layout_gravity="center_horizontal"
+                      android:textSize="30sp"
+                      android:singleLine="true"
+                      android:layout_width="0dp"
+                      android:layout_height="wrap_content"
+                      android:text="@string/clicksString"
+                      android:layout_weight="1"
+                      android:textColor="#fff"/>
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:textSize="30sp"
+                      android:textStyle="bold"
+                      android:id="@+id/clickNumber"
+                      android:textColor="#fff"
+                      android:text="randomNr"/>
+        </LinearLayout>
+        <LinearLayout android:orientation="horizontal"
+                      android:layout_width="fill_parent"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/deathsSection"
+                      android:layout_marginBottom="20dp">
+            <TextView android:layout_gravity="center_horizontal"
+                      android:textSize="30sp"
+                      android:singleLine="true"
+                      android:layout_width="0dp"
+                      android:layout_height="wrap_content"
+                      android:text="@string/reloadsString"
+                      android:layout_weight="1"
+                      android:textColor="#fff"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:id="@+id/reloadsNumber"
+                    android:textColor="#fff"
+                    android:text="randomNr"/>
+        </LinearLayout>
+        <LinearLayout android:orientation="horizontal"
+                      android:layout_width="fill_parent"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/linearLayout"
+                      android:layout_marginBottom="20dp">
+            <TextView android:layout_gravity="center_horizontal"
+                      android:textSize="30sp"
+                      android:singleLine="true"
+                      android:layout_width="0dp"
+                      android:layout_height="wrap_content"
+                      android:text="@string/rollsString"
+                      android:layout_weight="1"
+                      android:textColor="#fff"/>
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:textSize="30sp"
+                      android:textStyle="bold"
+                      android:id="@+id/rollsNumber"
+                      android:textColor="#fff"
+                      android:text="randomNr"/>
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center|bottom"
+            android:layout_marginBottom="20dp">
+        <Button
+
+                android:text="@string/back"
+                android:id="@+id/backButton"
+                android:background="@drawable/button"
+                android:typeface="serif"
+                android:textStyle="bold"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:textColor="#fff"
+                android:layout_weight="5"/>
+    </LinearLayout>
+</LinearLayout>
