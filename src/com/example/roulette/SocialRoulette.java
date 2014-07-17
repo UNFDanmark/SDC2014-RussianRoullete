@@ -1,7 +1,6 @@
 package com.example.roulette;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
 import android.graphics.Typeface;
@@ -95,7 +94,7 @@ public class SocialRoulette extends Activity {
 
         parentScreen.setOnTouchListener(gestureListener);
 
-        intent = new Intent(getApplicationContext(), ShotScreen.class);
+        intent = new Intent(getApplicationContext(), Shot.class);
         startActivity(intent);
     }
 

@@ -139,10 +139,16 @@ public class Punishment {
             selectedName = foundList.get(i);
             selectedhoneNumber = foundListNumbers.get(i);
         } else {
-            // Use random contact.
-            int i = (int)(Math.random() * allContacts.size());
-            selectedName = allContacts.get(i);
-            selectedhoneNumber = allContactsNumbers.get(i);
+            try {
+                // Use random contact.
+                int i = (int) (Math.random() * allContacts.size());
+                selectedName = allContacts.get(i);
+                selectedhoneNumber = allContactsNumbers.get(i);
+            } catch (Exception e) {
+                // Magnuses mor, default..
+                selectedName = "L'Easy";
+                selectedhoneNumber = "+4588888888";
+            }
         }
         selectedMessage = evilMessages[(int)(Math.random() * evilMessages.length)];
     }

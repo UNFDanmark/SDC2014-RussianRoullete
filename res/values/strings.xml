@@ -8,5 +8,6 @@
     <string name="youdied">YOU DIED \nGOOD LUCK EXPLAINING THIS MESSAGE </string>
     <string name="tryagain">Try Again</string>
     <string name="stats">Stats</string>
-
+    <string name="statstitle">- STATS -</string>
+    <string name="reloadsString">Reloads:</string>
 </resources>

@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.widget.TextView;
+import com.example.roulette.Punishment;
+import com.example.roulette.R;
 
-public class ShotScreen extends Activity {
+public class Shot extends Activity {
     Typeface tf;
     TextView youdiedText;
     TextView messageText;
