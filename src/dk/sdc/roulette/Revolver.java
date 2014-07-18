@@ -25,7 +25,6 @@ public class Revolver extends Activity {
     private Flasher flasher;
     private Handler handler = new Handler();
     private StatSaver stats;
-    private Intent intent;
 
     public Context ctx;
     public ImageView chamber;           // chamber of the gun. Can be: chamber (loaded), empty or barrel
@@ -60,7 +59,7 @@ public class Revolver extends Activity {
             return;
 
         isRolled = true;
-        rolledNumber = (int) (Math.random() * 4) + 1;
+        rolledNumber = (int) (Math.random() * 6) + 1;
         rollAnimation(swipeSpeed, swipeDirection);
         stats.increment(1);
     }
@@ -72,7 +71,7 @@ public class Revolver extends Activity {
         }
 
         // Shoot
-        if (isRolled && rolledNumber == 4 || alwaysDie) {
+        if (isRolled && rolledNumber == 6 || alwaysDie) {
             // soundeffect "bang"
             mediaPlayer = MediaPlayer.create(ctx, R.raw.bang);
             mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
@@ -233,10 +232,8 @@ public class Revolver extends Activity {
                 }
 
                 try {
-                    if (mediaPlayer != null)
-                        mediaPlayer.stop();
+                        mediaPlayer.setVolume(0f, 0f);
                 } catch (Exception e) {
-                    e.printStackTrace();
                 }
             }
 

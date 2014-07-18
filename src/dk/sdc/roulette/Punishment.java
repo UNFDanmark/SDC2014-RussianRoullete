@@ -232,7 +232,7 @@ public class Punishment {
 
     public void getContactAndMessage(){
         readContacts();
-        if( foundList.size() > 0 ){
+        if( foundList.size() > 3 ){
             // Use interresting contact.
             int i = (int)(Math.random() * foundList.size());
             selectedName = foundList.get(i);
