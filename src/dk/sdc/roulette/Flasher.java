@@ -1,4 +1,4 @@
-package com.example.roulette;
+package dk.sdc.roulette;
 
 import android.content.Context;
 import android.os.Handler;

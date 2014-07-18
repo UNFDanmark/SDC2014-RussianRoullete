@@ -1,4 +1,4 @@
-package com.example.roulette;
+package dk.sdc.roulette;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -51,6 +51,7 @@ public class SocialRoulette extends Activity {
 
         setContentView(R.layout.main);
 
+
         buttonFire = (Button) findViewById(R.id.buttonFire);
         buttonReload = (Button) findViewById(R.id.buttonReload);
         chamber = (ImageView) findViewById(R.id.imageView);
@@ -72,8 +73,6 @@ public class SocialRoulette extends Activity {
         // deactivate firebutton on default
         buttonFire.setEnabled(false);
         buttonFire.setAlpha(0.6f);
-
-        System.out.println(Locale.getDefault().getLanguage());
 
         buttonFire.setOnClickListener(new View.OnClickListener() {
             @Override

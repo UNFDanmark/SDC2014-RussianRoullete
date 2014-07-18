@@ -1,4 +1,4 @@
-package com.example.roulette;
+package dk.sdc.roulette;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import com.example.roulette.Punishment;
-import com.example.roulette.R;
 
 public class Shot extends Activity {
     Typeface tf;

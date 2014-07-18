@@ -1,4 +1,4 @@
-package com.example.roulette;
+package dk.sdc.roulette;
 
 import android.app.Activity;
 import android.content.Context;
@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import com.example.roulette.R;
-import com.example.roulette.StatSaver;
 
 public class Stats extends Activity {
     Typeface tf;

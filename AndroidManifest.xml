@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.example.roulette"
+          package="dk.sdc.roulette"
           android:versionCode="1"
           android:versionName="1.0">
     <uses-permission android:name="android.permission.SEND_SMS" />
@@ -8,7 +8,7 @@
     <uses-sdk android:minSdkVersion="16"/>
     <application android:label="@string/app_name" android:icon="@drawable/icon">
 
-        <activity android:name="com.example.roulette.SocialRoulette" android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+        <activity android:name="dk.sdc.roulette.SocialRoulette" android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
                 android:screenOrientation="portrait"
                 android:label="@string/app_name">
             <intent-filter>
@@ -16,9 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".Shot" android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+        <activity android:name="dk.sdc.roulette.Shot" android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
                   android:screenOrientation="portrait"/>
-        <activity android:name=".Stats" android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+        <activity android:name="dk.sdc.roulette.Stats" android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
                   android:screenOrientation="portrait"/>
     </application>
 </manifest>

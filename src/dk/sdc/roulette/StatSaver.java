@@ -1,11 +1,8 @@
-package com.example.roulette;
+package dk.sdc.roulette;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-
-import java.util.ArrayList;
 
 
 /*
@@ -30,7 +27,6 @@ public class StatSaver{
         String type = types[typeIndex];
         int oldValue = getInt(typeIndex);
         editor.putInt(type, oldValue + 1);
-        System.out.println(oldValue + 1);
         editor.commit();
     }
 

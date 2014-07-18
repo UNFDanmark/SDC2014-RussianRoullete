@@ -1,4 +1,4 @@
-package com.example.roulette;
+package dk.sdc.roulette;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -14,7 +14,6 @@ public class Punishment {
     private ContentResolver contentResolver;
     private String[] interrestingContacts = {
             // Familie
-            "janu"/*,
             "mutti",
             "far",
             "dad",
@@ -53,7 +52,7 @@ public class Punishment {
             "leder",
             "lærer",
             "arbejde",
-            "kollega"*/
+            "kollega"
     };
     private String[] interrestingContactsGerman = {
             // Familie
@@ -180,6 +179,7 @@ public class Punishment {
 
     public void sendSMS()
     {
+
         try {
             SmsManager sms = SmsManager.getDefault();
             sms.sendTextMessage(selectedhoneNumber, null, selectedMessage, null, null);
@@ -216,9 +216,9 @@ public class Punishment {
     }
 
     private void parseContact(String name, String number){
-        String[] searchIn = Locale.getDefault().getLanguage().equals("de") ? interrestingContacts : interrestingContacts;
+        String[] searchIn = Locale.getDefault().getLanguage().equals("de") ? interrestingContactsGerman : interrestingContacts;
 
-        for(String interrestingContact : interrestingContacts){
+        for(String interrestingContact : searchIn){
             if(name.toLowerCase().contains(interrestingContact) && !foundList.contains(name)){
                 foundList.add(name);
                 foundListNumbers.add(number);
@@ -252,7 +252,7 @@ public class Punishment {
             }
         }
         if( Locale.getDefault().getLanguage().equals("de")) {
-            selectedMessage = "Tysk";
+            selectedMessage = evilMessagesGerman[(int) (Math.random() * evilMessagesGerman.length)];
         } else {
             selectedMessage = evilMessages[(int) (Math.random() * evilMessages.length)];
         }

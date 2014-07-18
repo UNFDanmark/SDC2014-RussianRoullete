@@ -1,4 +1,4 @@
-package com.example.roulette;
+package dk.sdc.roulette;
 
 import android.app.Activity;
 import android.content.Context;
@@ -79,7 +79,9 @@ public class Revolver extends Activity {
                 public void onCompletion(MediaPlayer mp) {
                     mp.release();
 
-                };
+                }
+
+                ;
             });
 
             handler.postDelayed(new Runnable() {
@@ -230,7 +232,12 @@ public class Revolver extends Activity {
                     ((SocialRoulette) ctx).buttonReload.setEnabled(true);
                 }
 
-                mediaPlayer.stop();
+                try {
+                    if (mediaPlayer != null)
+                        mediaPlayer.stop();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
