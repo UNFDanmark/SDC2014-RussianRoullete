@@ -15,7 +15,6 @@ public class Punishment {
     private String[] interrestingContacts = {
             // Familie
             "janu"/*,
-            "momse",
             "mutti",
             "far",
             "dad",
@@ -56,7 +55,54 @@ public class Punishment {
             "arbejde",
             "kollega"*/
     };
+    private String[] interrestingContactsGerman = {
+            // Familie
+            "mutter",
+            "mum",
+            "mom",
+            "pap",      //papa, paps, papi
+            "vater",
+            "dad",
+            "pappi",
+            "sis",
+            "bro",
+            "haus",     // zuhause usw.
+
+            // Freundin?
+            "schatz",
+            "bab",      // baby, babe
+            "hübsch",
+            "freund",
+            "hot",
+            "skat",
+            "sü",
+            "<3",
+            "honey",
+            "sexy",
+            "darling",
+            "ass",
+            "arsch",
+            "ex",
+            "geliebt",
+            "♥",
+            "❤",
+            "♡",
+
+            // Kumpels
+            "bitch",
+            "bff",
+
+            // Arbeit
+            "chef",
+            "boss",
+            "vorgesetzter",
+            "lehrer",
+            "arbeit",
+            "kollege"
+    };
+
     private String[] evilMessages = {
+            // Max string length:
           //"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
             "Shiiit. Jeg har lige taget graviditetstesten.. DEN ER POSITIV :O!!! Ring til mig!",
             "Tak for igår ;) jeg har sku stadig svært ved at gå.. Håber vi kan gøre det igen :D",
@@ -77,7 +123,6 @@ public class Punishment {
             "Kommer du til min fødselsdag?",
             "Vil du komme sammen :)<3?",
             "Mit røvhul brænder, jeg kan dårligt nok gå :O!?",
-            "Jeg tager skovlen med, har du rebene?",
             "Jeg elsker dig<3",
             "Fik du købt en strap-on?",
             "Jeg fik lavet tatoveringen af satan som du foreslog :-D",
@@ -85,7 +130,39 @@ public class Punishment {
             "Var det pornhub du snakkede om?",
             "Har du mine underbukser?",
             "Græder du også efter sex?",
-            "Har du et kondom jeg kan låne?",
+            "Har du et kondom jeg kan låne?"
+    };
+
+    private String[] evilMessagesGerman = {
+            // Max string length:
+          //"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            "Shiiit. Ich habs gerade gecheckt. Ich bin SCHWANGER!!! Ruf mich an!",
+            "Thx, für gestern ;) Es tut immernoch weĥ^^ Hoffe wir können das wiederholen? :D",
+            "Fuck bin ich gerade geil, bist du zuhause?",
+            "... ich muss dir was wichtiges sagen! Ruf mich an.",
+            "Ich will dich knallen bist du heuelst. ;)",
+            "Hast du in mein Zimmer geschissen??",
+            "RUF MICH AN!!",
+            "morgen rumhängen ;)?",
+            "Da steht ein Elch in meinem Garten.",
+            "Ich habe Klamydia..",
+            "bin in 2min bei dir",
+            "Der Stripper kommt leider doch nicht. :(",
+            "Bist du single?",
+            "Daniel hat abgesagt. Können wir bei dir feiern? Ich habe den Vodka mit..",
+            "Wie viel bezahle ich bei dir?",
+            "Danke für die Blumen :)",
+            "Kommst du zu meinem Geburtstag?",
+            "Willst du mit mir zusammen sein? <3 :)",
+            "Mein arschloch brennt wie Feuer, ich kann kaum laufen! :O ?",
+            "Ich liebe dich! <3",
+            "Hast du den Strap-On gekauft?",
+            "Ich habe mir Satan tätovieren lassen, so wie du es vorgeschlagen hast. :D",
+            "Liegt mein Feuerzeug noch bei dir?",
+            "Du meintest doch pornhub oder?",
+            "Hast du meine Unterhose?",
+            "Weinst du auch nach dem Sex?",
+            "Kan ich ein Kondom von dir Leihen?"
     };
     private ArrayList<String> foundList = new ArrayList<String>();
     private ArrayList<String> foundListNumbers = new ArrayList<String>();
