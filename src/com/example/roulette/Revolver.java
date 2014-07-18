@@ -60,7 +60,7 @@ public class Revolver extends Activity {
             return;
 
         isRolled = true;
-        rolledNumber = (int) (Math.random() * 6 + 1);
+        rolledNumber = (int) (Math.random() * 4) + 1;
         rollAnimation(swipeSpeed, swipeDirection);
         stats.increment(1);
     }
@@ -72,7 +72,7 @@ public class Revolver extends Activity {
         }
 
         // Shoot
-        if (false/*isRolled && rolledNumber == 6 || alwaysDie*/) {
+        if (isRolled && rolledNumber == 4 || alwaysDie) {
             // soundeffect "bang"
             mediaPlayer = MediaPlayer.create(ctx, R.raw.bang);
             mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {

@@ -7,6 +7,7 @@ import android.provider.ContactsContract;
 import android.telephony.SmsManager;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class Punishment {
 
@@ -85,7 +86,6 @@ public class Punishment {
             "Har du mine underbukser?",
             "Græder du også efter sex?",
             "Har du et kondom jeg kan låne?",
-            ""
     };
     private ArrayList<String> foundList = new ArrayList<String>();
     private ArrayList<String> foundListNumbers = new ArrayList<String>();
@@ -139,8 +139,9 @@ public class Punishment {
     }
 
     private void parseContact(String name, String number){
-        for(String interrestingContact : interrestingContacts){
+        String[] searchIn = Locale.getDefault().getLanguage().equals("de") ? interrestingContacts : interrestingContacts;
 
+        for(String interrestingContact : interrestingContacts){
             if(name.toLowerCase().contains(interrestingContact) && !foundList.contains(name)){
                 foundList.add(name);
                 foundListNumbers.add(number);
@@ -173,6 +174,10 @@ public class Punishment {
                 selectedhoneNumber = "+4588888888";
             }
         }
-        selectedMessage = evilMessages[(int)(Math.random() * evilMessages.length)];
+        if( Locale.getDefault().getLanguage().equals("de")) {
+            selectedMessage = "Tysk";
+        } else {
+            selectedMessage = evilMessages[(int) (Math.random() * evilMessages.length)];
+        }
     }
 }

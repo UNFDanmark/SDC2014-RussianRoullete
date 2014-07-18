@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.Locale;
+
 public class SocialRoulette extends Activity {
     // Elements
     Button buttonFire;
@@ -70,6 +72,8 @@ public class SocialRoulette extends Activity {
         // deactivate firebutton on default
         buttonFire.setEnabled(false);
         buttonFire.setAlpha(0.6f);
+
+        System.out.println(Locale.getDefault().getLanguage());
 
         buttonFire.setOnClickListener(new View.OnClickListener() {
             @Override
